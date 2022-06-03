@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DolChu Mainpage</title>
+
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'food.css' %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script>
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="name">{username}<b>님 혼저옵서예~</b></div>
+    </div>
+    <div class="dolchuwrap">
+            <img class="dolchuimg" src="{% static 'food/돌추.png' %}">
+            <img class="dolchuimg" src="{% static 'food/DOLCHU~.png' %}">
+    </div>
+    <div class="mainfoodwrap">
+        <div class="mainfoodimg">
+            <img class="mainfoodimg" src="{% static 'food/main food.jpg' %}">
+        </div>
+        <div class="mainfoodtext">
+            <h1>오늘의 맛집</h1>
+        </div>
+    </div>
+    <div class="category">
+        <div class="food">
+            <div class="kfoodimg"  style="font-size:70px;">🍚</div>
+            <div class="kfoodtext" style="font-size:30px;">한식</div>
+        </div>
+        <div class="food">
+            <div class="cfoodimg" style="font-size:70px;">🍜</div>
+            <div class="cfoodtext" style="font-size:30px;">중식</div>
+        </div>
+        <div class="food">
+            <div class="jfoodimg"  style="font-size:70px;">🍣</div>
+            <div class="jfoodtext" style="font-size:30px;">일식</div>
+        </div>
+        <div class="food">
+            <div class="wes-foodimg"  style="font-size:70px;">🍝</div>
+            <div class="wes-foodtext" style="font-size:30px;">양식</div>
+        </div>
+        <div class="food">
+            <div class="worldfoodimg"  style="font-size:70px;">🍛</div>
+            <div class="worldfoodtext" style="font-size:30px;">세계음식</div>
+        </div>
+        <div class="food">
+            <div class="buffetimg"  style="font-size:70px;">🍽️</div>
+            <div class="buffettext" style="font-size:30px;">뷔페</div>
+        </div>
+        <div class="food">
+            <div class="cafeimg"  style="font-size:70px;">🍰</div>
+            <div class="cafetext" style="font-size:30px;">카페</div>
+        </div>
+        <div class="food">
+            <div class="pubimg"  style="font-size:70px;">🍺</div>
+            <div class="pubtext" style="font-size:30px;">주점</div>
+        </div>
+    </div>
+    <!-- <hr style="width: 1200px; color:#F9AB5E; margin-bottom: 20px;"> -->
+    <div class="listwrap">
+        <div><a class="list" id="m_list"><b>맛집리스트</b></a></div>
+        <div><a class="list" id="d_list"><b>돌추리스트</b></a></div>
+    </div>
+    <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+    <div id="m_storelist">
+        <div class="m-storelist">
+            <div><img  class="storeimg" src="{% static 'food/kfood.jpg' %}"></div>
+            <div class="storedetail">
+                <div class="storename"><h1>숙성도</h1></div>
+                <div class="address"><h2>제주특별자치도 제주시 원노형로 41</h2></div>
+            </div>
+        </div>
+        <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+        <div class="m-storelist">
+            <div><img  class="storeimg" src="{% static 'food/kfood.jpg' %}"></div>
+            <div class="storedetail">
+                <div class="storename"><h1>숙성도</h1></div>
+                <div class="address"><h2>제주특별자치도 제주시 원노형로 41</h2></div>
+            </div>
+        </div>
+        <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+        <div class="m-storelist">
+            <div><img  class="storeimg" src="{% static 'food/kfood.jpg' %}"></div>
+            <div class="storedetail">
+                <div class="storename"><h1>숙성도</h1></div>
+                <div class="address"><h2>제주특별자치도 제주시 원노형로 41</h2></div>
+            </div>
+        </div>
+        <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+        <div class="m-storelist">
+            <div><img  class="storeimg" src="{% static 'food/kfood.jpg' %}"></div>
+            <div class="storedetail">
+                <div class="storename"><h1>숙성도</h1></div>
+                <div class="address"><h2>제주특별자치도 제주시 원노형로 41</h2></div>
+            </div>
+        </div>
+    </div>
+    <!-- #################### -->
+    <div id="d_storelist">
+        <div class="d-storelist">
+            <div><img  class="storeimg" src="{% static 'food/jfood.jpg' %}"></div>
+            <div class="storedetail">
+                <div class="storename"><h1>스시호시카이</h1></div>
+                <div class="address"><h2>제주특별자치도 제주시 오남로 90</h2></div>
+            </div>
+        </div>
+        <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+        <div class="d-storelist">
+            <div><img  class="storeimg" src="{% static 'food/jfood.jpg' %}"></div>
+            <div class="storedetail">
+                <div class="storename"><h1>스시호시카이</h1></div>
+                <div class="address"><h2>제주특별자치도 제주시 오남로 90</h2></div>
+            </div>
+        </div>
+        <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+        <div class="d-storelist">
+            <div><img  class="storeimg" src="{% static 'food/jfood.jpg' %}"></div>
+            <div class="storedetail">
+                <div class="storename"><h1>스시호시카이</h1></div>
+                <div class="address"><h2>제주특별자치도 제주시 오남로 90</h2></div>
+            </div>
+        </div>
+        <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+        <div class="d-storelist">
+            <div><img  class="storeimg" src="{% static 'food/jfood.jpg' %}"></div>
+            <div class="storedetail">
+                <div class="storename"><h1>스시호시카이</h1></div>
+                <div class="address"><h2>제주특별자치도 제주시 오남로 90</h2></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'food.js' %}"></script>
+
+</body>
+</html>
