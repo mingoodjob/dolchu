@@ -2,6 +2,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,django
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,django
 
+
 ### Django ###
 *.log
 *.pot
@@ -224,3 +225,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,django
+

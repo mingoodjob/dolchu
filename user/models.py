@@ -5,3 +5,4 @@ from django.conf import settings
 class UserModel(AbstractUser):
     class Meta:
         db_table = "USER"
+
