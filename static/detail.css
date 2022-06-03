@@ -1,0 +1,92 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); * { font-family: 'Jeju Gothic', sans-serif; }
+body,h1,p{
+    margin: 0;
+}
+
+.main{
+    width: 100vw;
+    height 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.user_info{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    margin: 10px;
+}
+.logo {
+    width: 430px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.logo div img{
+    width: 200px;
+    height: 200px;
+}
+.logo_text{
+    position: absolute;
+    top: 30px;
+    right: 0;
+}
+
+
+.input_box{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    height: 30px;
+   
+}
+.input_box input{
+    border-radius: 20px;
+    border: 2px solid #F9AB5E;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    /* border: 1px solid #cecece; */
+}
+
+.input_box input:focus {
+    outline: none;
+}
+.serch{
+    cursor: pointer;
+    color: white;
+    display: flex;
+    background-color: #F9AB5E;
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+    position: absolute;
+    width: 80px;
+    border-radius: 20px;
+    height: 100%;
+}
+.glass{
+    position: absolute;
+    left: 10px;
+    top: 8px;
+}
+.serch_text{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 9px;
+    font-size: 14px;
+}
+.serch_text span{
+    color : #F9AB5E;
+    font-weight: bold;
+}
+
+
+.fa-solid {
+    color : #F9AB5E;
+}

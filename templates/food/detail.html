@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="main">
+        <div class="user_info">
+                안녕하세요 고객님 반갑습니다. 로그아웃
+        </div>
+        <div class="logo">
+            <div>
+                <img src="/static/img/dolchu.png">
+            </div>
+            
+            <div class="logo_text">
+                <img src="/static/img/logo.png">
+            </div>
+            
+        </div>
+        <div class="input_box">
+            <div class="serch">
+                검색
+            </div>
+            <div class="glass">
+                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+            </div>
+            <div class="serch_text">
+                <span>돌</span>하르방이 <span>추</span>천하는 <span>제주</span>맛집리스트
+            </div>
+                <input tpye="text" class="event">    
+            </div>
+    </div>
+    <script>
+        const page_input = document.querySelector(".event");
+        const page_input_icon = document.querySelector(".serch_text");
+        page_input.addEventListener('focus', (event) => {
+            page_input_icon.style.visibility = "hidden";
+        })
+    </script>
+</body>
+</html>
