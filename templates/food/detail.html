@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'detail.css' %}">
-</head>
+{% block title %}
+    메인페이지
+    
+{% endblock %}
+{% block content %}
 
-<body>
     <div class="container_comment">
         <form class="form_comment" method="post">
             {% csrf_token %}
@@ -98,6 +93,4 @@
             </ul>
         </div>
     </div>
-</body>
-
-</html>
+    {% endblock %}
