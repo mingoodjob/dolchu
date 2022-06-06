@@ -8,10 +8,10 @@
 {% load static %}
     <div class="img_container">
         <div class="detail_img">
-            <img class ="de_img" src="{% static  "/img/img.jpg" %}">
+            <img class ="de_img" src="{{ img }}">
             <div class="img_box">
                 <div class="img_boxline">
-                    <p>돌추돈까스</p>    
+                    <p>{{ store }}</p>    
                 </div>                
             </div> 
         </div>
@@ -27,14 +27,12 @@
             </div>
             <div>
                 <p>
-                    주소 서울특별시 동대문구 무학로 144 <br>
-                    
-                    전화번호 02-928-0231 <br>
-        
-                    가격대 만원-2만원<br>
-                    주차 주차공간없음 <br>
-                    영업시간 10:30 - 22:20<br>
-                    휴일 일
+                    주소 {{ address }} <br>
+                    전화번호 {{ tel }} <br>
+                    가격대 {{ price }}<br>
+                    주차 {{ parking }}<br>
+                    영업시간 {{ close }}<br>
+                    휴일 {{ holliday }}
                 </p>
             </div>
             
@@ -132,4 +130,37 @@
         </div>
     </div>
     <script type="text/javascript" src="{% static 'detail.js' %}"></script>
+    <script>
+        var mapContainer = document.getElementById('map')// 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 2 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+var map_maker = document.getElementById('#map_maker') 
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch('{{ address }}', function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+    if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+    
+        
+        map.setCenter(coords);
+
+    } 
+});  
+    </script>
     {% endblock %}
