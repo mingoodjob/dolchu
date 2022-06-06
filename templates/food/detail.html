@@ -5,7 +5,45 @@
     
 {% endblock %}
 {% block content %}
-
+{% load static %}
+    <div class="img_container">
+        <div class="detail_img">
+            <img class ="de_img" src="{% static  "/img/img.jpg" %}">
+            <div class="img_box">
+                <div class="img_boxline">
+                    <p>돌추돈까스</p>    
+                </div>                
+            </div> 
+        </div>
+    </div>
+    <div class="line_container">
+        <div class="map_line">
+    </div>        
+    </div>
+    <div class="map_container">
+        <div class="map_sec_container">
+            <div id ="map">
+                
+            </div>
+            <div>
+                <p>
+                    주소 서울특별시 동대문구 무학로 144 <br>
+                    
+                    전화번호 02-928-0231 <br>
+        
+                    가격대 만원-2만원<br>
+                    주차 주차공간없음 <br>
+                    영업시간 10:30 - 22:20<br>
+                    휴일 일
+                </p>
+            </div>
+            
+        </div>
+    </div>
+    <div class="line_container">
+        <div class="map_line">
+    </div>        
+    </div>
     <div class="container_comment">
         <form class="form_comment" method="post">
             {% csrf_token %}
@@ -93,4 +131,5 @@
             </ul>
         </div>
     </div>
+    <script type="text/javascript" src="{% static 'detail.js' %}"></script>
     {% endblock %}
