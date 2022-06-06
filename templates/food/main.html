@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DolChu Mainpage</title>
+{% extends 'base.html' %}
 
+{% block title %}
+    메인페이지
+    
+{% endblock %}
 
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'food.css' %}">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous">
-    </script>
-
-
-</head>
-<body>
-    <div class="container">
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <!-- <div class="container">
         <div class="name">{username}<b>님 혼저옵서예~</b></div>
     </div>
     <div class="dolchuwrap">
             <img class="dolchuimg" src="{% static 'food/돌추.png' %}">
             <img class="dolchuimg" src="{% static 'food/DOLCHU~.png' %}">
-    </div>
+    </div> -->
     <div class="mainfoodwrap">
         <div class="mainfoodimg">
             <img class="mainfoodimg" src="{% static 'food/main food.jpg' %}">
@@ -140,8 +131,5 @@
         </div>
     </div>
 
-
-    <script type="text/javascript" src="{% static 'food.js' %}"></script>
-
-</body>
-</html>
+    <script type="text/javascript" src="{% static 'main.js' %}"></script>
+    {% endblock %}
