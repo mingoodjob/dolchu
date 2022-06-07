@@ -44,7 +44,7 @@ def detail_view(request, id):
     if find_food.staravg != None:
         food_staravg = round(find_food.staravg, 1)
     else:
-        food_staravg = '없어요'
+        food_staravg = '리뷰가 없어요'
 
     comments = Comment.objects.filter(store=store)
 
