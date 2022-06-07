@@ -92,6 +92,7 @@
     font-size: 15px;
     border: 0;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 .star_avg {
@@ -103,7 +104,7 @@
 .comment_list {
     width: 680px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
 }
 
