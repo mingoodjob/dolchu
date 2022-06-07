@@ -1,14 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import UserModel
+from food.views import main_view
 from django.contrib.auth import get_user_model
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-# from django.contrib import messages
-
 
 def home(request):
-    return render(request, 'user/login.html')
+    user = request.user.is_authenticated
+    if user:
+        return redirect('main_view')
+    else:
+        return render(request, 'user/login.html')
 
 def login(request):
     if request.method == 'POST':
@@ -17,7 +20,7 @@ def login(request):
         login = auth.authenticate(request, username=user, password=pwd)
         if login is not None:
             auth.login(request, login)
-            return HttpResponse('로그인에 성공했습니다! <a href="/logout/">로그아웃</a>')
+            return redirect('home')
         else:
             return render(request, 'user/login.html', {'error': '아이디 혹은 패스워드를 확인 해 주세요!'})
     elif request.method == 'GET':

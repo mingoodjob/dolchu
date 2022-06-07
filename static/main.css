@@ -5,12 +5,17 @@
     font-style: normal;
 }
 
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
 * {
     font-family: 'KyoboHand';
 }
 
 body {
-    background-color: #CADFFF;
+    background-color: white;
 }
 
 .container {
@@ -36,17 +41,22 @@ body {
 
 .mainfoodimg {
     width: 1200px;
+    min-width: 400px;
     height: 400px;
     opacity: 0.8;
     margin-bottom: 30px;
+    object-fit : cover;
+    filter: drop-shadow(3px 3px 3px #F9AB5E);
+
+
 
 }
 
 .mainfoodtext {
     color: white;
-    font-size: 40px;
+    font-size: 35px;
     position: absolute;
-    top: 365px;
+    top: 460px;
 }
 
 .mainfoodwrap {
@@ -61,15 +71,22 @@ body {
     display: flex; 
     flex-flow: row wrap;
     justify-content: center;
+    align-items: center;
     margin-bottom: 40px;
 }
 
 .food {
     display: flex;
+
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    margin-left: 40px;
+    margin-left: 25px;
+    margin-right: 25px;
+    flex-shrink: 0;
+    width: 100px;
+
+
 }
 
 .listwrap {
@@ -81,20 +98,21 @@ body {
 
 .list {
     margin: 100px;
-    font-size: 35px;
+    font-size: 30px;
     margin-bottom: 50px;
 }
 
 .list:hover {
     color: #F9AB5E;
     cursor: pointer;
-    font-size: 37px;
+    font-size: 33px;
 }
 
 .storeimg {
     border-radius: 60%;
     width: 100px;
     height: 100px;
+    margin-left: 200px;
 }
 
 .storedetail {
@@ -102,13 +120,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0px 0px 50px 150px;
+    
+    margin-right: 200px;
 }
 
 .m-storelist {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin-top: 20px;
 }
@@ -116,7 +135,7 @@ body {
 .d-storelist {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin-top: 20px;
 }

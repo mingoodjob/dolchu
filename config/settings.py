@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'dbsave',
     'user',
     'food',
     'django.contrib.admin',
@@ -120,7 +121,7 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [ BASE_DIR / 'static', ]
+
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',

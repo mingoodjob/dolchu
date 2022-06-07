@@ -1,4 +1,14 @@
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css); * { font-family: 'Jeju Gothic', sans-serif; }
+@font-face {
+    font-family: 'KyoboHand';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'KyoboHand';
+    
+}
 body,h1,p{
     margin: 0;
 }
@@ -14,10 +24,26 @@ body,h1,p{
 
 .user_info{
     display: flex;
-    width: 100%;
+    width: 90%;
     justify-content: end;
     margin: 10px;
 }
+.user_info span{
+    background-color: #F9AB5E;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0 5px;
+}
+
+.user_info a{
+    text-decoration: none;
+    background-color: #ff0000;
+    color: white;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0 20px;
+}
+
 .logo {
     width: 430px;
     display: flex;
@@ -78,7 +104,7 @@ body,h1,p{
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 9px;
+    top: 8px;
     font-size: 14px;
 }
 .event{
@@ -94,3 +120,37 @@ body,h1,p{
 .fa-solid {
     color : #F9AB5E;
 }
+
+@media (max-width: 740px) {
+    .input_box {
+        width: 400px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 420px) {
+    .input_box {
+        width: 330px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 420px) {
+    .serch_text {
+        margin-right: 40px;
+    }
+}
+
+@media (max-width: 420px) {
+    .logo div img {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media (max-width: 420px) {
+    .logo_text {
+        top: 19px;
+        right: 53px;
+    }
+}
+
