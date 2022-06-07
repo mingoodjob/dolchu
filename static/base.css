@@ -105,3 +105,37 @@ body,h1,p{
 .fa-solid {
     color : #F9AB5E;
 }
+
+@media (max-width: 740px) {
+    .input_box {
+        width: 400px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 420px) {
+    .input_box {
+        width: 330px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 420px) {
+    .serch_text {
+        margin-right: 40px;
+    }
+}
+
+@media (max-width: 420px) {
+    .logo div img {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media (max-width: 420px) {
+    .logo_text {
+        top: 19px;
+        right: 53px;
+    }
+}
+

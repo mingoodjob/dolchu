@@ -23,7 +23,6 @@ class Food(models.Model):
     holiday = models.CharField(max_length=256, blank=True)
     staravg = models.FloatField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    # category = models.CharField(max_length=256)
 
 class Comment(models.Model):
     class Meta:
