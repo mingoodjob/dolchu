@@ -10,6 +10,12 @@
     
 }
 
+.main_container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
 
 .container_comment {
     display: flex;
@@ -146,7 +152,7 @@
 
 .img_container {
     display: flex;
-    width: 100%;
+    width: 1000px;
     height: 400px;
     justify-content: center;
 }
@@ -198,7 +204,7 @@
 }
 .map_line {
     display: flex;
-    width: 800px;
+    width: 900px;
     height: 1px;
     background-color: #CACACA;
 }
@@ -220,18 +226,120 @@
     text-align: center;
 }
 
-.map_sec_container div{
+.map_text{
     height: 300px;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     display: flex;
     font-size: 20px;
-    
-    
 }
 
 .map_sec_container #map{
     width: 400px;
     height: 300px;
+}
+
+@media (max-width: 800px) {
+    .map_sec_container {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 800px) {
+    .map_sec_container #map {
+        
+        width: 680px;
+    }
+}
+
+
+@media (max-width: 1050px) {
+    .img_container {
+        width: 700px;
+    }
+}
+
+@media (max-width: 740px) {
+    .img_container {
+        width: 500px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 740px) {
+    .map_container {
+        height: 450px;
+    }
+}
+@media (max-width: 740px) {
+    .map_sec_container {
+        height: 450px;
+    }
+}
+@media (max-width: 740px) {
+    .map_sec_container #map {
+        width: 500px;
+        height: 450px;
+    }
+}
+
+@media (max-width: 520px) {
+    .map_sec_container #map {
+        width: 450px;
+        height: 450px;
+    }
+}
+@media (max-width: 500px) {
+    .img_container {
+        width: 400px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 450px) {
+    .img_container {
+        width: 350px;
+        height: 350px;
+    }
+}
+@media (max-width: 450px) {
+    .map_sec_container #map {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 420px) {
+    .img_container {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 420px) {
+    .map_container {
+        height: 400px;
+    }
+}
+@media (max-width: 420px) {
+    .map_sec_container {
+        height: 400px;
+    }
+}
+@media (max-width: 420px) {
+    .map_sec_container #map {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+
+@media (max-width: 420px) {
+    .map_text {
+        font-size: 16px;
+    }
 }

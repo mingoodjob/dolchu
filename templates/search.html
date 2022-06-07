@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<bodY>
+    <div>
+        검색어 {{ post }}
+        {% for searchs in search %}
+        검색 결과  {{ searchs.store }} 입니다.
+        {% endfor %}
+    </div>
+</bodY>
+{% endblock %}
