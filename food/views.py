@@ -2,10 +2,20 @@ from django.shortcuts import render, redirect
 from .models import Food, Comment
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
-
+from django.db.models import Q
 
 def main_view(request):
     return render(request, 'food/main.html')
+
+def search(request):
+    post = request.POST.get('search','')
+    all = Food.objects.all()
+    search_list = all.filter(
+        Q(store__icontains = post) 
+    )
+    print(post)
+    print(search_list)
+    return render(request,'search.html',{'post':post,'search':search_list})
 
 
 @login_required
@@ -18,7 +28,7 @@ def detail_view(request, id):
     comments = Comment.objects.filter(store=food_store)
 
     if request.method == 'GET':
-      
+    
         all = Food.objects.get(id=1)
         address = (all.address)
         store = (all.store)
