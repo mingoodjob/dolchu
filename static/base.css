@@ -9,12 +9,13 @@
     font-family: 'KyoboHand';
     
 }
-body,h1,p{
+
+body, h1, p {
     margin: 0;
 }
 
-.main{
-    width: 100vw;
+.main {
+    width: 100%;
     margin-bottom: 50px;
     display: flex;
     justify-content: center;
@@ -22,22 +23,23 @@ body,h1,p{
     flex-direction: column;
 }
 
-.user_info{
+.user_info {
     display: flex;
     width: 90%;
     justify-content: end;
     margin: 10px;
 }
-.user_info span{
-    background-color: #F9AB5E;
+
+.user_info span {
+    background-color: #89da59;
     border-radius: 5px;
     padding: 0px 10px;
     margin: 0 5px;
 }
 
-.user_info a{
+.user_info a {
     text-decoration: none;
-    background-color: #ff0000;
+    background-color: #ff420e;
     color: white;
     border-radius: 5px;
     padding: 0px 10px;
@@ -49,42 +51,48 @@ body,h1,p{
     display: flex;
     justify-content: center;
     position: relative;
+    filter: drop-shadow(5px 25px 25px rgba(0, 0, 0, 0.25));
+    border-radius: 25px;
 }
-.logo div img{
+
+.logo div img {
     width: 200px;
     height: 200px;
 }
-.logo_text{
+
+.logo_text {
     position: absolute;
     top: 30px;
     right: 0;
 }
 
-
-.input_box{
+.input_box {
     position: relative;
     display: flex;
     justify-content: center;
     width: 500px;
     height: 30px;
+    filter: drop-shadow(5px 25px 25px rgba(0, 0, 0, 0.25));
+    border-radius: 25px;
 }
-.input_box input{
+
+.input_box input {
     border-radius: 20px;
-    border: 2px solid #F9AB5E;
     width: 100%;
     text-align: center;
     padding: 10px;
-    /* border: 1px solid #cecece; */
+    border: 1px solid #cecece;
 }
 
 .input_box input:focus {
     outline: none;
 }
-.serch{
+
+.serch {
     cursor: pointer;
     color: white;
     display: flex;
-    background-color: #F9AB5E;
+    background-color: #ff420e;
     justify-content: center;
     align-items: center;
     right: 0px;
@@ -93,6 +101,7 @@ body,h1,p{
     border-radius: 20px;
     height: 100%;
 }
+
 .glass{
     position: absolute;
     left: 10px;
@@ -107,18 +116,19 @@ body,h1,p{
     top: 8px;
     font-size: 14px;
 }
+
 .event{
     background: rgb(255, 255, 255);
 }
 
 .serch_text span{
-    color : #F9AB5E;
+    color : #ff420e;
     font-weight: bold;
 }
 
 
 .fa-solid {
-    color : #F9AB5E;
+    color : #ff420e;
 }
 
 @media (max-width: 740px) {
