@@ -17,7 +17,7 @@
 
     <div class="main">
         <div class="user_info">
-                안녕하세요 고객님 반갑습니다. 로그아웃
+                안녕하세요. <span>{{user.username}}</span>반갑습니다. <a href="{% url 'logout' %}">로그아웃</a>
         </div>
         <div class="logo">
             <div>

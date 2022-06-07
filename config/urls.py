@@ -19,7 +19,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('base/', views.base),
     path('', include('food.urls')),
     path('',include('user.urls')),
 

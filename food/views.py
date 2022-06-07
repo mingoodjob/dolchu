@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from .models import Food, Comment
 from django.contrib.auth.decorators import login_required
@@ -28,9 +27,9 @@ def detail_view(request, id):
         tel = (all.tel)
         parking =  (all.parking)
         close = (all.close)
-        holliday = (all.holliday)
+        holiday = (all.holiday)
         
-        return render(request, 'food/detail.html', {'id': food_id, 'staravg': food_staravg, 'comments': comments, 'address':address,'store':store,'img':img,'tel':tel,'parking':parking,'close':close,'holliday':holliday,'price':price}})
+        return render(request, 'food/detail.html', {'id': food_id, 'staravg': food_staravg, 'comments': comments, 'address':address,'store':store,'img':img,'tel':tel,'parking':parking,'close':close,'holiday':holiday,'price':price})
 
     elif request.method == 'POST':
         username = request.user
