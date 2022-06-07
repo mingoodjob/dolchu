@@ -1,12 +1,20 @@
 from django.shortcuts import render, redirect
-from .models import Food, Comment
+from .models import Food, Comment, Category
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.db.models import Q
 
+@login_required
 def main_view(request):
-    return render(request, 'food/main.html')
+    food_data = Food.objects.all().order_by('staravg')
+    return render(request, 'food/main.html', {'food_data' : food_data})
 
+
+@login_required
+def category_get(request,id):
+    category = Category.objects.get(id=id)
+    food_data = Food.objects.filter(category=category)
+    return render(request, 'food/main.html', {'food_data' : food_data})
 
 def search(request):
     post = request.POST.get('search','')

@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import UserModel
+from food.views import main_view
 from django.contrib.auth import get_user_model
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -8,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     user = request.user.is_authenticated
     if user:
-        return render(request, 'food/main.html')
+        return redirect('main_view')
     else:
         return render(request, 'user/login.html')
 

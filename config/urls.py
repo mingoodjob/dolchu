@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('food.urls')),
     path('',include('user.urls')),
-
+    path('',include('dbsave.urls')),
 ]
 
 

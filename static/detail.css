@@ -225,10 +225,13 @@ body {
 }
 
 .img_container {
+    overflow: hidden;
+    border-radius: 20px;
     display: flex;
     width: 1000px;
     height: 400px;
     justify-content: center;
+    box-shadow: 5px 5px 5px rgb(199, 199, 199);
 }
 
 .detail_img {

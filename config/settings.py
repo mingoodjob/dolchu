@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'dbsave',
     'user',
     'food',
     'django.contrib.admin',

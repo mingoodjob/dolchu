@@ -24,9 +24,24 @@ body,h1,p{
 
 .user_info{
     display: flex;
-    width: 98%;
+    width: 90%;
     justify-content: end;
-    margin: 15px;
+    margin: 10px;
+}
+.user_info span{
+    background-color: #F9AB5E;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0 5px;
+}
+
+.user_info a{
+    text-decoration: none;
+    background-color: #ff0000;
+    color: white;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0 20px;
 }
 
 .logo {
