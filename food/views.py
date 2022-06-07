@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from .models import Food, Comment
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,7 @@ from django.db.models import Avg
 
 def main_view(request):
     return render(request, 'food/main.html')
+
 
 @login_required
 def detail_view(request, id):
@@ -17,7 +19,18 @@ def detail_view(request, id):
     comments = Comment.objects.filter(store=food_store)
 
     if request.method == 'GET':
-        return render(request, 'food/detail.html', {'id': food_id, 'staravg': food_staravg, 'comments': comments})
+      
+        all = Food.objects.get(id=1)
+        address = (all.address)
+        store = (all.store)
+        price = (all.price)
+        img = (all.img)
+        tel = (all.tel)
+        parking =  (all.parking)
+        close = (all.close)
+        holliday = (all.holliday)
+        
+        return render(request, 'food/detail.html', {'id': food_id, 'staravg': food_staravg, 'comments': comments, 'address':address,'store':store,'img':img,'tel':tel,'parking':parking,'close':close,'holliday':holliday,'price':price}})
 
     elif request.method == 'POST':
         username = request.user

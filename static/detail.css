@@ -9,9 +9,7 @@
     font-family: 'KyoboHand';
     
 }
-body {
-    background-color: #CADFFF;
-}
+
 
 .container_comment {
     display: flex;
@@ -144,4 +142,95 @@ body {
     font-size: 15px;
     color: transparent;
     text-shadow: 0 0 0 #ff0000;
+}
+
+.img_container {
+    display: flex;
+    width: 100%;
+    height: 400px;
+    justify-content: center;
+}
+
+.detail_img {
+    position: relative;
+    display: flex;
+    width: 1000px;
+    justify-content: center;
+}
+.de_img{
+    width: 100%;
+    height: 100%;
+}
+.img_box{
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.img_boxline{
+
+    background-color: rgba( 255, 255, 255, 0.5 );
+    width: 500px;
+    height: 150px;  
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.img_boxline p{
+    color: white;
+    font-size: 40px;
+}
+
+.line_container {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 30px;
+    width: 100%;
+    height: 1px;
+}
+.map_line {
+    display: flex;
+    width: 800px;
+    height: 1px;
+    background-color: #CACACA;
+}
+
+.map_container {
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 300px;
+}
+
+.map_sec_container{
+    display: flex;
+    justify-content: space-around;
+    width: 900px;
+    height: 300px;
+    text-align: center;
+}
+
+.map_sec_container div{
+    height: 300px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    
+    
+}
+
+.map_sec_container #map{
+    width: 400px;
+    height: 300px;
 }
