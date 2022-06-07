@@ -73,11 +73,24 @@
                 </script>
             {% endif %}
         </form>
-        <a class="star_avg">평점 <span>{{ staravg }}</span></a>
+        <a class="star_avg">⭐ <span>{{ staravg }}</span></a>
         <div class="comment_list">
             {% for comment in comments %}
                 <ul class="comment_box">
-                    <span class="username">{{ comment.username}}</span>
+                    <div class="name_star_box">
+                        <span class="username">{{ comment.username}}</span>
+                        {% if comment.star == 1.0 %}
+                            <span class="star">⭐</span>
+                        {% elif comment.star == 2.0 %}
+                            <span class="star">⭐⭐</span>
+                        {% elif comment.star == 3.0 %}
+                            <span class="star">⭐⭐⭐</span>
+                        {% elif comment.star == 4.0 %}
+                            <span class="star">⭐⭐⭐⭐</span>
+                        {% else %}
+                            <span class="star">⭐⭐⭐⭐⭐</span>
+                        {% endif %}
+                    </div>
                     <span class="comment">{{ comment.comment}}</span>
                     {% if comment.star == 1.0 %}
                         <span class="star">⭐</span>
