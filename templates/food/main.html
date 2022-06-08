@@ -26,82 +26,103 @@
     <div class="category">
         <a href="/category/1">
         <div class="food">
-            <div class="kfoodimg"  style="font-size:70px;">🍚</div>
-            <div class="kfoodtext" style="font-size:30px;">한식</div>
+            <div class="kfoodimg"  style="font-size:40px;">🍚</div>
+            <div class="kfoodtext" style="font-size:20px;">한식</div>
         </div>
         </a>
 
         <a href="/category/2">
         <div class="food">
-            <div class="cfoodimg" style="font-size:70px;">🍜</div>
-            <div class="cfoodtext" style="font-size:30px;">중식</div>
+            <div class="cfoodimg" style="font-size:40px;">🍜</div>
+            <div class="cfoodtext" style="font-size:20px;">중식</div>
         </div>
         </a>
 
         <a href="/category/3">
         <div class="food">
-            <div class="jfoodimg"  style="font-size:70px;">🍣</div>
-            <div class="jfoodtext" style="font-size:30px;">일식</div>
+            <div class="jfoodimg"  style="font-size:40px;">🍣</div>
+            <div class="jfoodtext" style="font-size:20px;">일식</div>
         </div>
         </a>
 
         <a href="/category/4">
         <div class="food">
-            <div class="wes-foodimg"  style="font-size:70px;">🍝</div>
-            <div class="wes-foodtext" style="font-size:30px;">양식</div>
+            <div class="wes-foodimg"  style="font-size:40px;">🍝</div>
+            <div class="wes-foodtext" style="font-size:20px;">양식</div>
         </div>
         </a>
 
         <a href="/category/5">
         <div class="food">
-            <div class="worldfoodimg"  style="font-size:70px;">🍛</div>
-            <div class="worldfoodtext" style="font-size:30px;">세계음식</div>
+            <div class="worldfoodimg"  style="font-size:40px;">🍛</div>
+            <div class="worldfoodtext" style="font-size:20px;">세계음식</div>
         </div>
         </a>
 
         <a href="/category/6">
         <div class="food">
-            <div class="buffetimg"  style="font-size:70px;">🍽️</div>
-            <div class="buffettext" style="font-size:30px;">뷔페</div>
+            <div class="buffetimg"  style="font-size:40px;">🍽️</div>
+            <div class="buffettext" style="font-size:20px;">뷔페</div>
         </div>
         </a>    
 
         <a href="/category/7">
         <div class="food">
-            <div class="cafeimg"  style="font-size:70px;">🍰</div>
-            <div class="cafetext" style="font-size:30px;">카페</div>
+            <div class="cafeimg"  style="font-size:40px;">🍰</div>
+            <div class="cafetext" style="font-size:20px;">카페</div>
         </div>
         </a>
 
         <a href="/category/8">
         <div class="food">
-            <div class="pubimg"  style="font-size:70px;">🍺</div>
-            <div class="pubtext" style="font-size:30px;">주점</div>
+            <div class="pubimg"  style="font-size:40px;">🍺</div>
+            <div class="pubtext" style="font-size:20px;">주점</div>
         </div>
         </a>
 
     </div>
-    <!-- <hr style="width: 1200px; color:#F9AB5E; margin-bottom: 20px;"> -->
+
     <div class="listwrap">
         <div><a class="list" id="m_list"><b>맛집리스트</b></a></div>
         <div><a class="list" id="d_list"><b>돌추리스트</b></a></div>
     </div>
-    <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+    <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5">
     <div id="m_storelist">
             {% for food in food_data %}
             <a href="/detail/{{food.id}}"><div class="m-storelist">
                 <div><img class="storeimg" src="{{food.img}}"></div>
                 <div class="storedetail">
                     <div class="storename">
-                        <h1>{{food.store}}</h1>
+                        <h2>{{food.store}}</h2>
                     </div>
                     <div class="address">
-                        <h2>{{food.address}}</h2>
+                        <h3>{{food.address}}</h3>
                     </div>
                 </div>
+
             </div></a>
+            <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5">
             {% endfor %}
     </div>
+
+
+    <!-- <div id="d_storelist">
+        {% for food in food_data %}
+        <a href="/detail/{{food.id}}"><div class="d-storelist">
+            <div><img class="storeimg" src="{{food.img}}"></div>
+            <div class="storedetail">
+                <div class="storename">
+                    <h2>{{food.store}}</h2>
+                </div>
+                <div class="address">
+                    <h3>{{food.address}}</h3>
+                </div>
+            </div>
+
+        </div></a>
+        <hr style="width: 1200px; color:#F9AB5E; ">
+        {% endfor %}
+    </div> -->
 
     <script type="text/javascript" src="{% static 'main.js' %}"></script>
     {% endblock %}
