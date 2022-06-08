@@ -8,8 +8,7 @@ from itertools import chain
 def main_view(request):
     user = request.user.is_authenticated
     if user:
-        food_data = Food.objects.all().order_by('staravg')
-        food_data = food_data[:10]
+        food_data = Food.objects.all().order_by('-staravg')[:20]
         categoies = Category.objects.all()
         return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
     else:
@@ -54,7 +53,6 @@ def detail_view(request, id):
     holiday = all.holiday
 
     comments = Comment.objects.filter(store=id)
-    print('여기까지!')
     staravg = comments.aggregate(Avg('star')).get('star__avg')
     if staravg != None:
         food_staravg = round(staravg, 1)
@@ -130,10 +128,13 @@ def detail_view(request, id):
         else:
             model_comment = Comment()
             model_comment.username = username
-            model_comment.store = store
+            model_comment.store = Food.objects.get(id=id)
             model_comment.comment = comment
             model_comment.star = star
             model_comment.save()
+
+            all.staravg = staravg
+            all.save()
 
             return redirect('detail_view', id)
     

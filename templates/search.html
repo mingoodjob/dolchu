@@ -10,7 +10,7 @@
             <div class="search_item">
                 <a href= "/detail/{{ results.id }}"">
                 <img src="{{ results.img }}">
-                <h1>{{ results.store }} <span>{{ results.staravg }}</span></h1>
+                <h1>{{ results.store }} <span>{{ results.staravg|floatformat }}</span></h1>
                 <h2>{{ results.address}} {{ results.category.category}}</span></h2> 
                 </a>
             </div>

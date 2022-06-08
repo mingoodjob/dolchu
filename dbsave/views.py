@@ -120,17 +120,16 @@ def food_switch(argument):
 
 # @admin_required
 def dbsave(request):
-	category_num = 8
-	result = food_switch(category_num)
-	# food_list = listparsing(result,2)
+	catenum = 0
 	for cate in range(8):
-		result = food_switch(cate+1) 
+		catenum = catenum + 1
+		result = food_switch(catenum) 
 		for i in range(5):
 			food_list = listparsing(result,i+1)
 			for food in food_list:
 				try:
 					store, address, img, tel, price, parking, close = storeparsing(food)
-					category = Category.objects.get(id=category_num)
+					category = Category.objects.get(id=catenum)
 					Food.objects.create(store=store, address=address, img=img, tel=tel, price=price, parking=parking, close=close, category=category)
 				except:
 					pass
@@ -174,6 +173,21 @@ def user_create(request):
 		
 	
 	return HttpResponse("<h1>User 생성!</h1>")
+
+def star_avg(request):
+	result = 0
+	foods = Food.objects.all()
+	for food in	foods:
+		comment = Comment.objects.filter(store=food.id)
+		store = Food.objects.get(id=food.id)
+		for cm in comment:
+			result = result + cm.star
+			store.staravg = result / len(comment)
+			store.save()
+		result = 0
+		
+
+	return HttpResponse("<h1>Star Avg!</h1>")
 
 
 
