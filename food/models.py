@@ -30,7 +30,7 @@ class Comment(models.Model):
 
     username = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     # store = models.ForeignKey(Food, on_delete=models.CASCADE)
-    store = models.CharField(max_length=256)
+    store = models.ForeignKey(Food, on_delete=models.CASCADE)
 
     comment = models.CharField(max_length=256)
     star = models.FloatField()

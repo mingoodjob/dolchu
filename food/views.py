@@ -9,6 +9,7 @@ def main_view(request):
     user = request.user.is_authenticated
     if user:
         food_data = Food.objects.all().order_by('staravg')
+        food_data = food_data[:10]
         categoies = Category.objects.all()
         return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
     else:
@@ -32,6 +33,10 @@ def search(request):
             Q(address__icontains = post),
         )
 
+        for results in result:
+            if results.img == "":
+                results.img = './static/img/noimage.png'
+
         return render(request,'search.html',{'post':post,'result':result})
 
 
@@ -48,13 +53,28 @@ def detail_view(request, id):
     close = all.close
     holiday = all.holiday
 
-    find_food = Food.objects.get(id=id)
-    if find_food.staravg != None:
-        food_staravg = round(find_food.staravg, 1)
+    comments = Comment.objects.filter(store=id)
+    print('여기까지!')
+    staravg = comments.aggregate(Avg('star')).get('star__avg')
+    if staravg != None:
+        food_staravg = round(staravg, 1)
     else:
-        food_staravg = '리뷰가 없어요'
+        food_staravg = '리뷰가 없어요'    
 
-    comments = Comment.objects.filter(store=store)
+    if address == "":
+        address = '내용없음'
+    if price == "":
+        price = '내용없음'
+    if img =="":
+        img = './static/img/noimage.png'
+    if tel == "":
+        tel = '내용없음'
+    if parking == "":
+        parking = '내용없음'
+    if close == "":
+        close = '내용없음'
+    if holiday == "":
+        holiday = '내용없음'
 
     if request.method == 'GET':
         
@@ -114,9 +134,6 @@ def detail_view(request, id):
             model_comment.comment = comment
             model_comment.star = star
             model_comment.save()
-
-            find_food.staravg = comments.aggregate(Avg('star')).get('star__avg')
-            find_food.save()
 
             return redirect('detail_view', id)
     

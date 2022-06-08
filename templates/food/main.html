@@ -8,13 +8,6 @@
 {% block content %}
 {% load static %}
     <link rel="stylesheet" href="{% static 'main.css' %}">
-    <!-- <div class="container">
-        <div class="name">{username}<b>님 혼저옵서예~</b></div>
-    </div>
-    <div class="dolchuwrap">
-            <img class="dolchuimg" src="{% static 'food/돌추.png' %}">
-            <img class="dolchuimg" src="{% static 'food/DOLCHU~.png' %}">
-    </div> -->
     <div class="mainfoodwrap">
         <div class="mainfoodimg">
             <img class="mainfoodimg" src="{% static 'food/main food.jpg' %}">
@@ -28,8 +21,8 @@
         {% for cate in categoies %}
         <a href="/category/{{cate.id}}">
             <div class="food">
-                <div class="kfoodimg"  style="font-size:70px;">{{cate.desc}}</div>
-                <div class="kfoodtext" style="font-size:30px;">{{cate.category}}</div>
+                <div class="kfoodimg">{{cate.desc}}</div>
+                <div class="kfoodtext">{{cate.category}}</div>
             </div>
         </a>
         {% endfor %}
@@ -40,7 +33,7 @@
         <div><a class="list" id="m_list"><b>맛집리스트</b></a></div>
         <div><a class="list" id="d_list"><b>돌추리스트</b></a></div>
     </div>
-    <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5">
+    <!-- <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5"> -->
     <div id="m_storelist">
             {% for food in food_data %}
             <a href="/detail/{{food.id}}"><div class="m-storelist">
@@ -55,7 +48,7 @@
                 </div>
 
             </div></a>
-            <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5">
+            <!-- <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5"> -->
             {% endfor %}
     </div>
 
