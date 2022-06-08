@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
-
 {% block content %}
+{% load static %}
 
-<bodY>
-    <div>
-        검색어 {{ post }}
-        {% for searchs in search %}
-        검색 결과  {{ searchs.store }} 입니다.
-        {% endfor %}
+<bodY> 
+    <div class=" search_continaer">
+        <div class="search_itmes">
+            {% for results in result %} 
+
+            <div class="search_item">
+                <a href= "/detail/{{ results.id }}"">
+                <img src="{{ results.img }}">
+                <h1>{{ results.store }} <span>{{ results.staravg }}</span></h1>
+                <h2>{{ results.address}} {{ results.category.category}}</span></h2> 
+                </a>
+            </div>
+            {% endfor %} 
+        </div>
     </div>
+
 </bodY>
 {% endblock %}
