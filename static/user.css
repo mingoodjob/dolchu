@@ -206,5 +206,11 @@ p {
     .sucsess a div{
         font-size: 20px;
     }
+    input, select, textarea {
+        font-size: 16px;
+        /* transform: scale(0.86); */
+    }
+    
+
 }
   
