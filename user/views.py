@@ -23,8 +23,13 @@ def login(request):
             return redirect('home')
         else:
             return render(request, 'user/login.html', {'error': '아이디 혹은 패스워드를 확인 해 주세요!'})
+        
     elif request.method == 'GET':
-        return render(request, 'user/login.html')
+        user = request.user.is_authenticated
+        if user:
+            return redirect('main_view')
+        else:
+            return render(request, 'user/login.html')
 
 def join(request):
     if request.method == 'POST':
@@ -46,7 +51,11 @@ def join(request):
                 return render(request, 'user/join.html',{'sucsess':'sucsess'})
         
     elif request.method == 'GET':
-        return render(request, 'user/join.html')
+        user = request.user.is_authenticated
+        if user:
+            return redirect('main_view')
+        else:
+            return render(request, 'user/join.html')
     
 @login_required        
 def logout(request):

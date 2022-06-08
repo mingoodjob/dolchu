@@ -4,17 +4,22 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.db.models import Q
 
-@login_required
 def main_view(request):
-    food_data = Food.objects.all().order_by('staravg')
-    return render(request, 'food/main.html', {'food_data' : food_data})
+    user = request.user.is_authenticated
+    if user:
+        food_data = Food.objects.all().order_by('staravg')
+        categoies = Category.objects.all()
+        return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
+    else:
+        return render(request, 'user/login.html')
 
 
 @login_required
 def category_get(request,id):
+    categoies = Category.objects.all()
     category = Category.objects.get(id=id)
     food_data = Food.objects.filter(category=category)
-    return render(request, 'food/main.html', {'food_data' : food_data})
+    return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
 
 def search(request):
     post = request.POST.get('search','')

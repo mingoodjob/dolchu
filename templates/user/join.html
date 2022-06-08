@@ -30,21 +30,24 @@
         <div class="error"><i class="fa-solid fa-triangle-exclamation fa-lg"></i><span>{{ error }}</span></div>
         {% endif %}
         {% if sucsess %}
-        <div class="sucsess"><a href="{% url 'login' %}"></a><div>회원가입이 완료 되었습니다. 로그인페이지로 이동</div></a>
+        <div class="sucsess"><a href="{% url 'login' %}"><div>회원가입이 완료 되었습니다. 로그인페이지로 이동</div></a>
             <a href="{% url 'login' %}"><div class="logo_box"><img src="{% static  "/img/logo_model.png" %}" class="logologo"></div></a>
         </div>
         {% endif %}
         <form action="{% url 'join' %}" method="post">
             {% csrf_token %}
-            <div>
+            <div class="login_input_box">
+                <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input" name="username" type="id" placeholder="아이디">
             </div>
         
-            <div>
+            <div class="login_input_box">
+                <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input" name="password" type="password" placeholder="비밀번호">
             </div>
 
-            <div>
+            <div class="login_input_box">
+                <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input" name="password2" type="password" placeholder="비밀번호 확인">
             </div>
         
