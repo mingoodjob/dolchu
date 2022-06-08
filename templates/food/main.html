@@ -24,61 +24,15 @@
         </div>
     </div>
     <div class="category">
-        <a href="/category/1">
-        <div class="food">
-            <div class="kfoodimg"  style="font-size:40px;">🍚</div>
-            <div class="kfoodtext" style="font-size:20px;">한식</div>
-        </div>
-        </a>
 
-        <a href="/category/2">
-        <div class="food">
-            <div class="cfoodimg" style="font-size:40px;">🍜</div>
-            <div class="cfoodtext" style="font-size:20px;">중식</div>
-        </div>
+        {% for cate in categoies %}
+        <a href="/category/{{cate.id}}">
+            <div class="food">
+                <div class="kfoodimg"  style="font-size:70px;">{{cate.desc}}</div>
+                <div class="kfoodtext" style="font-size:30px;">{{cate.category}}</div>
+            </div>
         </a>
-
-        <a href="/category/3">
-        <div class="food">
-            <div class="jfoodimg"  style="font-size:40px;">🍣</div>
-            <div class="jfoodtext" style="font-size:20px;">일식</div>
-        </div>
-        </a>
-
-        <a href="/category/4">
-        <div class="food">
-            <div class="wes-foodimg"  style="font-size:40px;">🍝</div>
-            <div class="wes-foodtext" style="font-size:20px;">양식</div>
-        </div>
-        </a>
-
-        <a href="/category/5">
-        <div class="food">
-            <div class="worldfoodimg"  style="font-size:40px;">🍛</div>
-            <div class="worldfoodtext" style="font-size:20px;">세계음식</div>
-        </div>
-        </a>
-
-        <a href="/category/6">
-        <div class="food">
-            <div class="buffetimg"  style="font-size:40px;">🍽️</div>
-            <div class="buffettext" style="font-size:20px;">뷔페</div>
-        </div>
-        </a>    
-
-        <a href="/category/7">
-        <div class="food">
-            <div class="cafeimg"  style="font-size:40px;">🍰</div>
-            <div class="cafetext" style="font-size:20px;">카페</div>
-        </div>
-        </a>
-
-        <a href="/category/8">
-        <div class="food">
-            <div class="pubimg"  style="font-size:40px;">🍺</div>
-            <div class="pubtext" style="font-size:20px;">주점</div>
-        </div>
-        </a>
+        {% endfor %}
 
     </div>
 

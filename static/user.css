@@ -8,7 +8,6 @@
     font-family: 'KyoboHand';
 }
 
-
 body,
 h1,
 p {
@@ -47,13 +46,14 @@ p {
 .main {
     width: 100vw;
     height: 100vh;
-    background-color: #CADFFF;
+    /* background-color: #CADFFF; */
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .login_input {
+    /* position: relative; */
     width: 350px;
     padding: 20px 10px;
     margin: 10px;
@@ -62,6 +62,10 @@ p {
     color: black;
     text-align: center;
     font-size: 12px;
+}
+.login_input_icon img{
+    width: 30px;
+    height: 30px;
 }
 
 .main div input:focus {
@@ -101,6 +105,15 @@ p {
     border: none;
     margin: 10px 5px;
     cursor: pointer;
+}
+.login_input_box{
+    position: relative;
+}
+
+.login_input_icon{
+    top:24px;
+    left:15px;
+    position: absolute;
 }
 
 .login_submit {

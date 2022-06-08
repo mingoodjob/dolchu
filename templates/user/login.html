@@ -32,11 +32,13 @@
         {% endif %}
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
-            <div>
+            <div class="login_input_box">
+                <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input"  name="username" type="id" placeholder="아이디">
             </div>
         
-            <div>
+            <div class="login_input_box">
+                <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input" name="password" type="password" placeholder="비밀번호">
             </div>
 
