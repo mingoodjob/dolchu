@@ -123,14 +123,17 @@ def dbsave(request):
 	category_num = 8
 	result = food_switch(category_num)
 	# food_list = listparsing(result,2)
-	for cate in range(7):
+	for cate in range(8):
 		result = food_switch(cate+1) 
 		for i in range(5):
 			food_list = listparsing(result,i+1)
 			for food in food_list:
-				store, address, img, tel, price, parking, close = storeparsing(food)
-				category = Category.objects.get(id=category_num)
-				Food.objects.create(store=store, address=address, img=img, tel=tel, price=price, parking=parking, close=close, category=category)
+				try:
+					store, address, img, tel, price, parking, close = storeparsing(food)
+					category = Category.objects.get(id=category_num)
+					Food.objects.create(store=store, address=address, img=img, tel=tel, price=price, parking=parking, close=close, category=category)
+				except:
+					pass
 		
 	return HttpResponse("<h1>dbsave!</h1>")
 
