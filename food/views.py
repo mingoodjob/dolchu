@@ -3,6 +3,7 @@ from .models import Food, Comment, Category
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.db.models import Q
+from itertools import chain
 
 def main_view(request):
     user = request.user.is_authenticated
@@ -22,14 +23,16 @@ def category_get(request,id):
     return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
 
 def search(request):
-    post = request.POST.get('search','')
-    all = Food.objects.all()
-    search_list = all.filter(
-        Q(store__icontains = post) 
-    )
-    print(post)
-    print(search_list)
-    return render(request,'search.html',{'post':post,'search':search_list})
+    if request.method =='POST':
+        post = request.POST.get('search','')
+        all = Food.objects.all()
+        result = all.filter(
+            Q(category__category__contains= post)  |
+            Q(store__icontains = post) |
+            Q(address__icontains = post),
+        )
+
+        return render(request,'search.html',{'post':post,'result':result})
 
 
 @login_required
@@ -49,7 +52,7 @@ def detail_view(request, id):
     if find_food.staravg != None:
         food_staravg = round(find_food.staravg, 1)
     else:
-        food_staravg = '없어요'
+        food_staravg = '리뷰가 없어요'
 
     comments = Comment.objects.filter(store=store)
 

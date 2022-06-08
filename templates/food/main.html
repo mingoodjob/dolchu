@@ -35,27 +35,48 @@
         {% endfor %}
 
     </div>
-    <!-- <hr style="width: 1200px; color:#F9AB5E; margin-bottom: 20px;"> -->
+
     <div class="listwrap">
         <div><a class="list" id="m_list"><b>맛집리스트</b></a></div>
         <div><a class="list" id="d_list"><b>돌추리스트</b></a></div>
     </div>
-    <hr style="width: 1200px; color:#F9AB5E; margin-top: 10px; ">
+    <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5">
     <div id="m_storelist">
             {% for food in food_data %}
             <a href="/detail/{{food.id}}"><div class="m-storelist">
                 <div><img class="storeimg" src="{{food.img}}"></div>
                 <div class="storedetail">
                     <div class="storename">
-                        <h1>{{food.store}}</h1>
+                        <h2>{{food.store}}</h2>
                     </div>
                     <div class="address">
-                        <h2>{{food.address}}</h2>
+                        <h3>{{food.address}}</h3>
                     </div>
                 </div>
+
             </div></a>
+            <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5">
             {% endfor %}
     </div>
+
+
+    <!-- <div id="d_storelist">
+        {% for food in food_data %}
+        <a href="/detail/{{food.id}}"><div class="d-storelist">
+            <div><img class="storeimg" src="{{food.img}}"></div>
+            <div class="storedetail">
+                <div class="storename">
+                    <h2>{{food.store}}</h2>
+                </div>
+                <div class="address">
+                    <h3>{{food.address}}</h3>
+                </div>
+            </div>
+
+        </div></a>
+        <hr style="width: 1200px; color:#F9AB5E; ">
+        {% endfor %}
+    </div> -->
 
     <script type="text/javascript" src="{% static 'main.js' %}"></script>
     {% endblock %}
