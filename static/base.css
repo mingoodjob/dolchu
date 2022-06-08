@@ -165,3 +165,14 @@ body,h1,p{
         margin-right: 50px;
     }
 }
+
+@media (max-width: 520px) {
+    .input_box {
+        margin-right: 20px;
+    }
+}
+@media (max-width: 520px) {
+    .logo {
+        margin-right: 40px;
+    }
+}
