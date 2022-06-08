@@ -77,7 +77,7 @@
         flex-basis :43%;
     }
 }
-@media (max-width: 519px) {
+@media (max-width: 523px) {
     .search_item {
         flex-basis: 91%;
         margin-bottom: 20px;
@@ -98,12 +98,12 @@
     }
 }
 
-@media (max-width: 610px) {
+@media (max-width: 612px) {
     .search_item h2 {
         font-size: 16px;
     }
 }
-@media (max-width: 610px) {
+@media (max-width: 612px) {
     .search_item h1 {
         font-size: 30px;
     }
