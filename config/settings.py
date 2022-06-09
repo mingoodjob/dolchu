@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-cc_6)@3p*m@v3t8k&$6oqd!4_cydc!^b!v=@-hdra40lrxxw06
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'dbsave',
     'user',
     'food',
+    'sslserver',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

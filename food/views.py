@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core import serializers
 from .models import Food, Comment, Category
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 count = 0
@@ -13,8 +14,7 @@ def main_view(request):
     count = 0
     user = request.user.is_authenticated
     if user:
-        food_data = Food.objects.all().order_by('staravg')
-        food_data = food_data[:10]
+        food_data = Food.objects.all().order_by('-staravg')[:20]
         categoies = Category.objects.all()
         return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
     else:
@@ -76,6 +76,10 @@ def detail_view(request, id):
     close = all.close
     holiday = all.holiday
 
+    add = address.split(' ')[2]
+    
+    travel = Travel.objects.filter(region=add)
+
     comments = Comment.objects.filter(store=id)
     staravg = comments.aggregate(Avg('star')).get('star__avg')
     if staravg != None:
@@ -112,7 +116,8 @@ def detail_view(request, id):
             'parking':parking, 
             'close': close, 
             'holiday': holiday, 
-            'price': price
+            'price': price,
+            'travel': travel,
             })
 
     elif request.method == 'POST':
@@ -153,10 +158,13 @@ def detail_view(request, id):
         else:
             model_comment = Comment()
             model_comment.username = username
-            model_comment.store = store
+            model_comment.store = Food.objects.get(id=id)
             model_comment.comment = comment
             model_comment.star = star
             model_comment.save()
+
+            all.staravg = staravg
+            all.save()
 
             return redirect('detail_view', id)
     

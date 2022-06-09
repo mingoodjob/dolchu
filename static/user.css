@@ -23,6 +23,7 @@ p {
 }
 
 .logo_model_box {
+    justify-content: center;
     display: flex;
     width: 400px;
 }
@@ -38,15 +39,16 @@ p {
 }
 
 .logo_title div span {
-    color: #F9AB5E;
+    color: #ff420e;
     font-size: 25px;
     font-weight: bold;
 }
 
 .main {
+    overflow-x: hidden;
     width: 100vw;
     height: 100vh;
-    /* background-color: #CADFFF; */
+    background-color: #f98866cb;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -59,7 +61,7 @@ p {
     margin: 10px;
     border-radius: 10px;
     border: 1px solid #F9AB5E;
-    color: black;
+    color: #ff420e;
     text-align: center;
     font-size: 12px;
 }
@@ -99,7 +101,7 @@ p {
 
 .let_join {
     background: white;
-    color: #F9AB5E;
+    color: #ff420e;
     padding: 10px 40px;
     border-radius: 10px;
     border: none;
@@ -193,7 +195,22 @@ p {
 
 @media (max-width: 500px) {
     .logo {
-      width: 350px;
+      width: 300px;
     }
+    .login_input{
+        width: 250px;
+    }
+    .logo_model{
+        width: 100px;
+    }
+    .sucsess a div{
+        font-size: 20px;
+    }
+    input, select, textarea {
+        font-size: 16px;
+        /* transform: scale(0.86); */
+    }
+    
+
 }
   
