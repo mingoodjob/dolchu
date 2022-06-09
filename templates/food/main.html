@@ -16,8 +16,12 @@
             <h1>오늘의 맛집</h1>
         </div>
     </div>
+    <div class="scorll_container">
+        <div class="scroll"> 
+            <img src="{% static 'img/home.png' %}">
+        </div>
+        </div>
     <div class="category">
-
         {% for cate in categoies %}
         <a href="/category/{{cate.id}}">
             <div class="food">
@@ -47,29 +51,57 @@
                     </div></a>
                 </div>
 
+
             </div>
             <!-- <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5"> -->
             {% endfor %}
-    </div>
+            <diV id="test1" class="test">
+            </diV>
+                <script>
+                $(document).ready(function () {
+                });
+                $(".scroll").hide()
+                $(".scroll").click(function() {
+                $("html, body").animate({ scrollTop: 0 });
+                });
+                window.onscroll = function() {
+                if ((window.innerHeight + window.scrollY) > document.body.offsetHeight) {
+                    $(".scroll").show()
+                    $.ajax({
+                            url : "{% url 'ajax_method' %}",
+                            type : "GET",   
+                            // data:{
+                            // },
+                            // datatype: 'json',     
+                            success : function(test) {  
+                                let test1 = document.getElementById('#test1')
+                                test.forEach(function(element){
+                                    let store = element['fields']['store']
+                                    let address = element['fields']['address']
+                                    let id = element['pk']
+                                    let img = element['fields']['img']
+
+                                    console.log(store)
+                                        $("#test1").append(`
+                                            <a href="/detail/${id}"><div class="m-storelist">
+                                                <div><img class="storeimg" src="${img}"></div>
+                                                <div class="storedetail">
+                                                    <div class="storename">
+                                                        <h2>${store}</h2>
+                                                    </div>
+                                                    <div class="address">
+                                                        <h3>${address}</h3>
+                                                    </div>
+                                                </div>
+                                            </div></a>
+                                                `)
+                                });    
+                            },
+                        });
+                    };
+                }
+                </script>
+                <script type="text/javascript" src="{% static 'main.js' %}"></script>
 
 
-    <!-- <div id="d_storelist">
-        {% for food in food_data %}
-        <a href="/detail/{{food.id}}"><div class="d-storelist">
-            <div><img class="storeimg" src="{{food.img}}"></div>
-            <div class="storedetail">
-                <div class="storename">
-                    <h2>{{food.store}}</h2>
-                </div>
-                <div class="address">
-                    <h3>{{food.address}}</h3>
-                </div>
-            </div>
-
-        </div></a>
-        <hr style="width: 1200px; color:#F9AB5E; ">
-        {% endfor %}
-    </div> -->
-
-    <script type="text/javascript" src="{% static 'main.js' %}"></script>
     {% endblock %}
