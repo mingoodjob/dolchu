@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from requests import request
-from food.models import Food, Comment, Category
+from food.models import Food, Comment, Category, Travel
 from user.models import UserModel
 from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.decorators import admin_required
@@ -9,8 +9,9 @@ from django.db.models import Avg
 from django.db.models import Q
 import requests
 from bs4 import BeautifulSoup
-from time import sleep
 import random,string
+from selenium import webdriver
+from time import sleep
 
 def listparsing(food_url,page):
     
@@ -189,6 +190,63 @@ def star_avg(request):
 
 	return HttpResponse("<h1>Star Avg!</h1>")
 
+def travel(request):
+
+	lists = []
+
+	address = Food.objects.all().order_by('address')
+	for i in address:
+		add = i.address.split(' ')
+		add = add[2]
+		lists.append(add)
+	
+	result = list(set(lists))
+
+	return HttpResponse(f'{result}')
 
 
+def travel_create(request):
 
+# address = ['우도면', '표선면', '이도이동', '도두이동', '서홍동', '색달동', '용담일동', '남원읍', '노형동', '강정동', '월평동', '서귀동', '구좌읍', '회수동', '애월읍', '용담이동', '중문동', '한경면', '이호이동', '일도이동', '호근동', '일도일동', '삼도일동', '동홍동', '아라일동', '대포동', '건입동', '외도이동', '오라일동', '연동', '한림읍', '회천동', '신효동', '보목동', '안덕면', '서호동', '대정읍', '삼양일동', '이도2동', '하예동', '성산읍', '도남동', '하효동', '이도일동', '도평동', '아라이동', '상효동', '용담삼동', '영평동', '법환동', '오라이동', '상예동', '조천읍', '삼양이동', '외도일동', '삼도이동']
+	address = ['우도면', '표선면', '이도이동', '도두이동', '서홍동', '색달동', '용담일동', '남원읍', '노형동', '강정동', '월평동', '서귀동', '구좌읍', '회수동', '애월읍', '용담이동', '중문동', '한경면', '이호이동', '일도이동', '호근동', '일도일동', '삼도일동', '동홍동', '아라일동', '대포동', '건입동', '외도이동', '오라일동', '연동', '한림읍', '회천동', '신효동', '보목동', '안덕면', '서호동', '대정읍', '삼양일동', '이도2동', '하예동', '성산읍', '도남동', '하효동', '이도일동', '도평동', '아라이동', '상효동', '용담삼동', '영평동', '법환동', '오라이동', '상예동', '조천읍', '삼양이동', '외도일동', '삼도이동']
+
+	driver = webdriver.Chrome(r"C:\Users\PC\Documents\chromedriver.exe")
+
+	sleep(3)
+
+	for i in address:
+		add = f'{i}'
+		driver.get(f'https://www.visitjeju.net/kr/search?q={i}')
+		driver.implicitly_wait(10)
+		sleep(3)
+		driver.find_element_by_css_selector('#content > div > div.cont_wrap > div > div.result_box_r > div.sort_wrap > ul > li:nth-child(3) > a').click()
+		sleep(3)
+		for s in range(3):
+			try:
+				title = driver.find_element(by='css selector', value=f'#content > div > div.cont_wrap > div > div.result_box_r > div.clear > div.resut_wrap > div > ul > li:nth-child({s+1}) > a > p.item_tit')
+				img = driver.find_element(by='css selector', value=f'#content > div > div.cont_wrap > div > div.result_box_r > div.clear > div.resut_wrap > div > ul > li:nth-child({s+1}) > a > img')
+				Travel.objects.create(region=add, travel_title=title.text, travel_img=img.get_attribute('src'))
+			except:
+				pass
+			sleep(3)
+
+		return HttpResponse('파싱 끝남')
+
+def travel_save(request):
+	# f = open('travel.txt', 'w', encoding='utf-8')
+	# travel = Travel.objects.all()
+	# for i in travel:
+	# 	f.write(i.travel_title+',')
+	# 	f.write(i.travel_img+',')
+	# 	f.write(i.region+'\n')
+	
+	f = open('travel.txt', 'r', encoding='utf-8')
+	text = f.readlines()
+	for i in text:
+		data = i.strip().split(',')
+		print(data[0])
+		print(data[1])
+		print(data[2])
+	f.close()
+		
+	return HttpResponse('저장 끝남')

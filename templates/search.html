@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
-{% block content %}
-{% load static %}
 
-<bodY> 
+{% load static %}
+{% block title %}
+    검색
+    
+{% endblock %}
+{% block content %}
+<body>
     <div class=" search_continaer">
         <div class="search_itmes">
             {% for results in result %} 
@@ -18,5 +22,5 @@
         </div>
     </div>
 
-</bodY>
+</body>
 {% endblock %}

@@ -36,18 +36,18 @@
     <!-- <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5"> -->
     <div id="m_storelist">
             {% for food in food_data %}
-            <a href="/detail/{{food.id}}"><div class="m-storelist">
-                <div><img class="storeimg" src="{{food.img}}"></div>
-                <div class="storedetail">
+            <div class="m-storelist">
+                <a href="/detail/{{food.id}}"><div><img class="storeimg" src="{{food.img}}"></div></a>
+                <a href="/detail/{{food.id}}"><div class="storedetail">
                     <div class="storename">
                         <h2>{{food.store}}</h2>
                     </div>
                     <div class="address">
                         <h3>{{food.address}}</h3>
-                    </div>
+                    </div></a>
                 </div>
 
-            </div></a>
+            </div>
             <!-- <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5"> -->
             {% endfor %}
     </div>

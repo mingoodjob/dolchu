@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    메인페이지
+    {{ store }}
     
 {% endblock %}
 {% block content %}
@@ -50,6 +50,21 @@
             
         </div>
     </div>
+
+    <!-- 여행추천 -->
+    <div class="travel_box">
+        <div class="travel_title">주변 여행지 추천</div>
+        <div class="travel">
+                {% for tra in travel %}
+                <div class="travel_list">
+                    <img src="{{ tra.travel_img }}">
+                    <div>{{ tra.travel_title }}</div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+    <!--  -->
+
     <div class="line_container">
         <div class="map_line">
     </div>        

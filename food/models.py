@@ -35,6 +35,14 @@ class Comment(models.Model):
     comment = models.CharField(max_length=256)
     star = models.FloatField()
 
+class Travel(models.Model):
+
+    class Meta:
+        db_table = "travels"
+
+    travel_title = models.CharField(max_length=256)
+    travel_img = models.CharField(max_length=256)
+    region = models.CharField(max_length=256)    
 
 
 

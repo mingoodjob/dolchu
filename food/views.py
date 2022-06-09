@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Food, Comment, Category
+from .models import Food, Comment, Category, Travel
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.db.models import Q
@@ -52,6 +52,10 @@ def detail_view(request, id):
     close = all.close
     holiday = all.holiday
 
+    add = address.split(' ')[2]
+    
+    travel = Travel.objects.filter(region=add)
+
     comments = Comment.objects.filter(store=id)
     staravg = comments.aggregate(Avg('star')).get('star__avg')
     if staravg != None:
@@ -87,7 +91,8 @@ def detail_view(request, id):
             'parking':parking, 
             'close': close, 
             'holiday': holiday, 
-            'price': price
+            'price': price,
+            'travel': travel,
             })
 
     elif request.method == 'POST':
