@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'detail.css' %}">
     <link rel="stylesheet" href="{% static 'search.css' %}">
@@ -14,7 +15,7 @@
     <title>{% block title %}{% endblock %} | DolChu</title>
 </head>
 <body>
-
+    
     <div class="main">
         <div class="user_info">
                 안녕하세요. <span>{{user.username}}</span>반갑습니다. <a href="{% url 'logout' %}">로그아웃</a>
@@ -25,10 +26,10 @@
             </div>
             
             <div class="logo_text">
-                <img src="{% static 'img/logo2.png' %}">
+                <a href="/main/"><img src="{% static 'img/logo2.png' %}"></a>
             </div>
-            
         </div>
+    
         <form method="post", action="/search/">
             {% csrf_token %}
         <div class="input_box">
@@ -45,26 +46,27 @@
             </div>
         </div>
         </form>
-        
-    <script>
-        const page_input = document.querySelector(".event");
-        const page_input_icon = document.querySelector(".serch_text");
-        page_input.addEventListener('focus', (event) => {
-            page_input_icon.style.visibility = "hidden";
-        })
-        page_input_icon.addEventListener('click', (event) => {
-            page_input_icon.style.visibility = "hidden";
-            page_input.focus()
-        })
-        page_input.addEventListener('blur', (e) =>{
-            page_input_icon.style.visibility = "visible";
-            page_input.value = "";
-        })
 
 
-    </script>
-    {% block content %}
+<script>
+    const page_input = document.querySelector(".event");
+    const page_input_icon = document.querySelector(".serch_text");
+    page_input.addEventListener('focus', (event) => {
+        page_input_icon.style.visibility = "hidden";
+    })
+    page_input_icon.addEventListener('click', (event) => {
+        page_input_icon.style.visibility = "hidden";
+        page_input.focus()
+    })
+    page_input.addEventListener('blur', (e) =>{
+        page_input_icon.style.visibility = "visible";
+        page_input.value = "";
+    })
 
-    {% endblock %}
+
+</script>
+{% block content %}
+
+{% endblock %}
 </body>
 </html>

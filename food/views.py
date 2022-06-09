@@ -1,11 +1,16 @@
+from django.db.models import Q
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.core import serializers
 from .models import Food, Comment, Category
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
-from django.db.models import Q
-from itertools import chain
+count = 0
 
+@login_required
 def main_view(request):
+    global count 
+    count = 0
     user = request.user.is_authenticated
     if user:
         food_data = Food.objects.all().order_by('staravg')
@@ -15,15 +20,31 @@ def main_view(request):
     else:
         return render(request, 'user/login.html')
 
+#페이지 네이션 무한스크롤
+@login_required
+def ajax_method(request):
+    if request.method == 'GET':
+        global count 
+        count += 1
+        for i in str(count):
+            if i == i:
+                test = Food.objects.all()[count*10:count*10+10]
+                test = serializers.serialize('json',test)
+                return HttpResponse(test, content_type="text/json-comment-filtered")
+        
 
 @login_required
 def category_get(request,id):
     categoies = Category.objects.all()
     category = Category.objects.get(id=id)
     food_data = Food.objects.filter(category=category)
+    
     return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
-
+@login_required
 def search(request):
+    global count 
+    count = 0
+    print(count)
     if request.method =='POST':
         post = request.POST.get('search','')
         all = Food.objects.all()
@@ -42,6 +63,8 @@ def search(request):
 
 @login_required
 def detail_view(request, id):
+    global count 
+    count = 0
     all = Food.objects.get(id=id)
     food_id = all.id
     address = all.address
@@ -54,13 +77,13 @@ def detail_view(request, id):
     holiday = all.holiday
 
     comments = Comment.objects.filter(store=id)
-    print('여기까지!')
     staravg = comments.aggregate(Avg('star')).get('star__avg')
     if staravg != None:
         food_staravg = round(staravg, 1)
     else:
-        food_staravg = '리뷰가 없어요'    
+        food_staravg = '리뷰가 없어요'
 
+    
     if address == "":
         address = '내용없음'
     if price == "":

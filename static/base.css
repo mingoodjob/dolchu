@@ -130,9 +130,24 @@ body, h1, p {
     font-weight: bold;
 }
 
-
 .fa-solid {
     color : #ff420e;
+}
+
+.scorll_container{
+    top: 1050px;
+    position: sticky;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+}
+
+.scroll img {
+    left : 87%;
+    position: absolute;
+    width: 270px;
+    height: 270px;
 }
 
 @media (max-width: 740px) {
@@ -184,5 +199,29 @@ body, h1, p {
 @media (max-width: 520px) {
     .logo {
         margin-right: 40px;
+    }
+}
+
+@media (max-width: 2000px) {
+    .scroll img {
+        left: 83%;
+    }
+}
+
+@media (max-width: 1500px) {
+    .scroll img {
+        left: 78%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .scroll img {
+        left: 78%;
+    }
+}
+
+@media (max-width: 1000px) {
+        .scorll_container .scroll img {
+            display: none;
     }
 }

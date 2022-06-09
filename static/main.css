@@ -196,8 +196,9 @@ body {
 }
 
 .storename {
-    color: #ff420e; 
+    color: #ff420e;
 }
+
 
 @media (max-width:790px){
     .food{
