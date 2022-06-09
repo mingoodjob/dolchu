@@ -2,8 +2,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core import serializers
-from .models import Food, Comment, Category
-
+from .models import Food, Comment, Category,Travel
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 count = 0
@@ -156,12 +155,21 @@ def detail_view(request, id):
                 'price': price
                 })
         else:
+            f = open('user_rating.csv', 'a', encoding='utf-8')
+
             model_comment = Comment()
             model_comment.username = username
             model_comment.store = Food.objects.get(id=id)
             model_comment.comment = comment
             model_comment.star = star
             model_comment.save()
+
+            store_name = Food.objects.get(id=id)
+
+            f.write(f'{request.user.id},{store_name.store},{star}\n')
+
+            f.close()
+            
 
             all.staravg = staravg
             all.save()
