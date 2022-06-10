@@ -21,17 +21,26 @@ body, h1, p {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-top: 50px;
 }
 
 .user_info {
     display: flex;
-    width: 90%;
-    justify-content: end;
-    margin: 10px;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(236, 236, 236);
+    border-bottom: 1px solid rgb(193, 192, 192);
+    position: fixed;
+    z-index: 10;
+    top:0;
+    left:0;
 }
 
-.user_info span {
-    background-color: #89da59;
+.user_info span:nth-child(1) {
+    background-color: #410dff;
+    color: aliceblue;
     border-radius: 5px;
     padding: 0px 10px;
     margin: 0 5px;
@@ -47,7 +56,7 @@ body, h1, p {
 }
 
 .logo {
-    width: 430px;
+    width: 300px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -63,7 +72,7 @@ body, h1, p {
 .logo_text {
     position: absolute;
     top: 30px;
-    right: 0;
+    right: -70px;
 }
 
 .input_box {
@@ -149,6 +158,39 @@ body, h1, p {
     width: 270px;
     height: 270px;
 }
+.logo_model a{
+    background: none;
+}
+.logo_model a img{
+    width: 60px;
+    height: 60px;
+}
+.nav_logo_title{
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff420e;
+}
+.nav_logo_title span:nth-child(1){
+    background: rgb(155, 71, 71);
+    color: aliceblue;
+}
+.nav_logo_title span{
+    font-size: 25px;
+    color: rgb(0, 166, 255);
+}
+.scroll_box{
+    display: flex;
+    align-items: center;
+    width: 100px;
+    position: relative;
+}
+.scroll-top{
+    position: absolute;
+}
+.scroll-top a{
+    background-color: #ffff00;
+    color: black;
+}
 
 @media (max-width: 740px) {
     .input_box {
@@ -180,7 +222,7 @@ body, h1, p {
 @media (max-width: 420px) {
     .logo_text {
         top: 19px;
-        right: 53px;
+        right: -10px;
     }
 }
 
@@ -200,6 +242,20 @@ body, h1, p {
     .logo {
         margin-right: 40px;
     }
+}
+
+@media (max-width: 680px) {
+    .user_info{
+        flex-direction: column;
+        height: 150px;
+    }
+    .scroll-top{
+        top:-82px;
+    }
+    .main{
+        padding-top: 150px;
+    }
+    
 }
 
 @media (max-width: 2000px) {

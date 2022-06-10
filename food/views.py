@@ -5,6 +5,9 @@ from django.core import serializers
 from .models import Food, Comment, Category,Travel
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
+import random
+
+
 count = 0
 
 @login_required
@@ -15,7 +18,40 @@ def main_view(request):
     if user:
         food_data = Food.objects.all().order_by('-staravg')[:20]
         categoies = Category.objects.all()
-        return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
+
+        category_count = 0
+        categories1 = []
+        categories2 = []
+        for i in categoies:
+            category_count += 1
+            cate = {
+                'id': i.id,
+                'category' : i.category,
+                'desc' : i.desc,
+            }
+            if category_count <= 4:
+                categories1.append(cate)
+            else:
+                categories2.append(cate)
+
+        best_store = []
+
+        for x in categoies:
+            store = Food.objects.filter(category=x.id)
+            best_stores = store.all().order_by('-staravg')[:1]
+            for s in best_stores:
+                doc = {
+                    'id' : s.id,
+                    'store' : s.store,
+                    'img' : s.img,
+                }
+                best_store.append(doc)
+
+        best_food = random.choice(best_store)
+
+
+
+        return render(request, 'food/main.html', {'food_data' : food_data, 'categories1' : categories1, 'categories2' : categories2, 'best_food' : best_food})
     else:
         return render(request, 'user/login.html')
 
@@ -35,15 +71,45 @@ def ajax_method(request):
 @login_required
 def category_get(request,id):
     categoies = Category.objects.all()
+
+    category_count = 0
+    categories1 = []
+    categories2 = []
+    for i in categoies:
+        category_count += 1
+        cate = {
+            'id': i.id,
+            'category' : i.category,
+            'desc' : i.desc,
+        }
+        if category_count <= 4:
+            categories1.append(cate)
+        else:
+            categories2.append(cate)
+
     category = Category.objects.get(id=id)
     food_data = Food.objects.filter(category=category)
+
+    best_store = []
+
+    for x in categoies:
+        store = Food.objects.filter(category=x.id)
+        best_stores = store.all().order_by('-staravg')[:1]
+        for s in best_stores:
+            doc = {
+                'id' : s.id,
+                'store' : s.store,
+                'img' : s.img,
+            }
+            best_store.append(doc)
+
+    best_food = random.choice(best_store)
     
-    return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
+    return render(request, 'food/main.html', {'food_data' : food_data, 'categories1' : categories1, 'categories2' : categories2, 'best_food' : best_food})
 @login_required
 def search(request):
     global count 
     count = 0
-    print(count)
     if request.method =='POST':
         post = request.POST.get('search','')
         all = Food.objects.all()

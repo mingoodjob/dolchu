@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import random
 from sklearn.metrics.pairwise import cosine_similarity
 from django.shortcuts import render, redirect
 from food.models import Food, Comment,Category
@@ -36,14 +37,6 @@ def recommand(request):
 	# 266번 유저가 좋아했던 영화를 평점 내림차순으로 출력
     recommand_store = title_user.query(f"userid == {user}").sort_values(ascending=False, by=user, axis=1)
     recommand_list = recommand_store.columns.tolist()[:10]
-
-    store_list = []
-
-    for i in recommand_list:
-        store = Food.objects.get(store=i)
-        store_list.append(store)
-
-
     		
 	# pandas table to list
 	# 만약 해당 유저가 아직 보지 않은 영화에 대해서, 평점을 예측하고자 한다면?
@@ -52,6 +45,12 @@ def recommand(request):
 	
     user_index_list = user_based_collab[userid].sort_values(ascending=False)[:10].index.tolist()
     user_weight_list = user_based_collab[userid].sort_values(ascending=False)[:10].tolist()
+
+    store_list = []
+
+    for i in recommand_list:
+        store = Food.objects.get(store=i)
+        store_list.append(store)
 
     star_result = []
 		# 1번 유저가 다크나이트를 보고 어떤 평점을 부여할지 예측
@@ -72,8 +71,47 @@ def recommand(request):
 
         star_result.append(result)
 
-    print(star_result)
+        dolchu = []
+
+    for i,x in zip(store_list, star_result):
+        dolchu_data = {
+            'id': i.id,
+            'store': i.store,
+            'img': i.img,
+            'address': i.address,
+            'star': x,
+        }
+        dolchu.append(dolchu_data)
 
     categoies = Category.objects.all()
+    category_count = 0
+    categories1 = []
+    categories2 = []
+    for i in categoies:
+        category_count += 1
+        cate = {
+            'id': i.id,
+            'category' : i.category,
+            'desc' : i.desc,
+        }
+        if category_count <= 4:
+            categories1.append(cate)
+        else:
+            categories2.append(cate)
 
-    return render(request, 'food/recommand.html',{'store_list':store_list, 'result':result, 'categoies':categoies})
+    best_store = []
+
+    for x in categoies:
+        store = Food.objects.filter(category=x.id)
+        best_stores = store.all().order_by('-staravg')[:1]
+        for s in best_stores:
+            doc = {
+                'id' : s.id,
+                'store' : s.store,
+                'img' : s.img,
+            }
+            best_store.append(doc)
+
+    best_food = random.choice(best_store)
+
+    return render(request, 'food/recommand.html',{'dolchu' : dolchu, 'store_list':store_list, 'star_result':star_result, 'categories1':categories1,'categories2':categories2,'best_food':best_food})
