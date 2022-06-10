@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'dbsave',
     'user',
     'food',
-    'sslserver',
+    'recommand',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

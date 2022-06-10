@@ -1,21 +1,15 @@
-from sqlite3 import Row
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from requests import request
 from food.models import Food, Comment, Category, Travel
 from user.models import UserModel
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.decorators import admin_required
 from django.db.models import Avg
 from django.db.models import Q
-import requests
 from bs4 import BeautifulSoup
-import random,string
-from selenium import webdriver
 from time import sleep
-import pandas as pd
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
+import requests
+import random,string
+
 
 def listparsing(food_url,page):
     
@@ -208,42 +202,7 @@ def travel(request):
 
 	return HttpResponse(f'{result}')
 
-
-def travel_create(request):
-
-# address = ['우도면', '표선면', '이도이동', '도두이동', '서홍동', '색달동', '용담일동', '남원읍', '노형동', '강정동', '월평동', '서귀동', '구좌읍', '회수동', '애월읍', '용담이동', '중문동', '한경면', '이호이동', '일도이동', '호근동', '일도일동', '삼도일동', '동홍동', '아라일동', '대포동', '건입동', '외도이동', '오라일동', '연동', '한림읍', '회천동', '신효동', '보목동', '안덕면', '서호동', '대정읍', '삼양일동', '이도2동', '하예동', '성산읍', '도남동', '하효동', '이도일동', '도평동', '아라이동', '상효동', '용담삼동', '영평동', '법환동', '오라이동', '상예동', '조천읍', '삼양이동', '외도일동', '삼도이동']
-	address = ['우도면', '표선면', '이도이동', '도두이동', '서홍동', '색달동', '용담일동', '남원읍', '노형동', '강정동', '월평동', '서귀동', '구좌읍', '회수동', '애월읍', '용담이동', '중문동', '한경면', '이호이동', '일도이동', '호근동', '일도일동', '삼도일동', '동홍동', '아라일동', '대포동', '건입동', '외도이동', '오라일동', '연동', '한림읍', '회천동', '신효동', '보목동', '안덕면', '서호동', '대정읍', '삼양일동', '이도2동', '하예동', '성산읍', '도남동', '하효동', '이도일동', '도평동', '아라이동', '상효동', '용담삼동', '영평동', '법환동', '오라이동', '상예동', '조천읍', '삼양이동', '외도일동', '삼도이동']
-
-	driver = webdriver.Chrome(r"C:\Users\PC\Documents\chromedriver.exe")
-
-	sleep(3)
-
-	for i in address:
-		add = f'{i}'
-		driver.get(f'https://www.visitjeju.net/kr/search?q={i}')
-		driver.implicitly_wait(10)
-		sleep(3)
-		driver.find_element_by_css_selector('#content > div > div.cont_wrap > div > div.result_box_r > div.sort_wrap > ul > li:nth-child(3) > a').click()
-		sleep(3)
-		for s in range(3):
-			try:
-				title = driver.find_element(by='css selector', value=f'#content > div > div.cont_wrap > div > div.result_box_r > div.clear > div.resut_wrap > div > ul > li:nth-child({s+1}) > a > p.item_tit')
-				img = driver.find_element(by='css selector', value=f'#content > div > div.cont_wrap > div > div.result_box_r > div.clear > div.resut_wrap > div > ul > li:nth-child({s+1}) > a > img')
-				Travel.objects.create(region=add, travel_title=title.text, travel_img=img.get_attribute('src'))
-			except:
-				pass
-			sleep(3)
-
-		return HttpResponse('파싱 끝남')
-
 def travel_save(request):
-	# f = open('travel.txt', 'w', encoding='utf-8')
-	# travel = Travel.objects.all()
-	# for i in travel:
-	# 	f.write(i.travel_title+',')
-	# 	f.write(i.travel_img+',')
-	# 	f.write(i.region+'\n')
-	
 	f = open('travel.txt', 'r', encoding='utf-8')
 	text = f.readlines()
 	for i in text:
@@ -274,64 +233,3 @@ def review_load(request):
 	g.close()
 
 	return HttpResponse('로드 끝남')
-
-def recommand(request):
-	userid = request.user.id
-	print(userid)
-
-	rating = pd.read_csv('user_rating.csv')
-	store = pd.read_csv('store_info.csv')
-
-	# movieId를 기준으로 ratings 와 movies 를 결합함
-	store_ratings = pd.merge(rating, store, on='store')
-
-	# user별로 영화에 부여한 rating 값을 볼 수 있도록 pivot table 사용
-	title_user = store_ratings.pivot_table('rating', index='userid', columns='store')
-
-	# 평점을 부여안한 영화는 그냥 0이라고 부여
-	title_user = title_user.fillna(0)
-
-	# 유저 1~610 번과 유저 1~610 번 간의 코사인 유사도를 구함
-	user_based_collab = cosine_similarity(title_user, title_user)
-
-	# 위는 그냥 numpy 행렬이니까, 이를 데이터프레임으로 변환
-	user_based_collab = pd.DataFrame(user_based_collab, index=title_user.index, columns=title_user.index)
-
-	# 1번 유저와 가장 비슷한 266번 유저를 뽑고,
-	user = user_based_collab[userid].sort_values(ascending=False)[:10].index[1]
-	# 266번 유저가 좋아했던 영화를 평점 내림차순으로 출력
-	recommand_store = title_user.query(f"userid == {user}").sort_values(ascending=False, by=user, axis=1)
-	recommand_list = recommand_store.columns.tolist()[:10]
-
-	store_list = []
-
-	for i in recommand_list:
-		store = Food.objects.get(store=i)
-		store_list.append(store)
-
-
-    		
-	# pandas table to list
-	# 만약 해당 유저가 아직 보지 않은 영화에 대해서, 평점을 예측하고자 한다면?
-	# (어떤 유저와 비슷한 정도 * 그 유저가 영화에 대해 부여한 평점) 을 더해서 (유저와 비슷한 정도의 합)으로 나눠보면 됨!
-	# index_list 는 비슷한 유저의 id 값 리스트 / weight_list 는 비슷한 유저와의 유사도 리스트
-	
-	user_index_list = user_based_collab[userid].sort_values(ascending=False)[:10].index.tolist()
-	user_weight_list = user_based_collab[userid].sort_values(ascending=False)[:10].tolist()
-
-		# 1번 유저가 다크나이트를 보고 어떤 평점을 부여할지 예측
-	store = '남양수산'
-	weighted_sum = []
-	weighted_user = []
-	for i in range(1, 10):
-		# 해당 영화를 보고 평점을 부여한 사람들의 유사도와 평점만 추가 (즉, 0이 아닌 경우에만 계산에 활용)
-		if int(title_user[store][user_index_list[i]]) is not 0:
-			# 평점 * 유사도 추가
-			weighted_sum.append(title_user[store][user_index_list[i]] * user_weight_list[i])
-			# 유사도 추가
-			weighted_user.append(user_weight_list[i])
-
-	# 총 평점*유사도 / 총 유사도를 토대로 평점 예측
-	result = sum(weighted_sum)/sum(weighted_user)
-
-	return render(request, 'food/list.html',{'store_list':store_list, 'result':result})

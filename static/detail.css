@@ -376,6 +376,10 @@ body {
 .travel_list div{
     text-align: center;
 }
+@media screen and (max-width:800px) {
+    .travel{
+        flex-direction: column;    }
+}
 
 
 @media screen and (max-width:550px) {
