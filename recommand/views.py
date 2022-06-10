@@ -53,20 +53,26 @@ def recommand(request):
     user_index_list = user_based_collab[userid].sort_values(ascending=False)[:10].index.tolist()
     user_weight_list = user_based_collab[userid].sort_values(ascending=False)[:10].tolist()
 
+    star_result = []
 		# 1번 유저가 다크나이트를 보고 어떤 평점을 부여할지 예측
-    store = '남양수산'
-    weighted_sum = []
-    weighted_user = []
-    for i in range(1, 10):
-        # 해당 영화를 보고 평점을 부여한 사람들의 유사도와 평점만 추가 (즉, 0이 아닌 경우에만 계산에 활용)
-        if int(title_user[store][user_index_list[i]]) != 0:
-            # 평점 * 유사도 추가
-            weighted_sum.append(title_user[store][user_index_list[i]] * user_weight_list[i])
-            # 유사도 추가
-            weighted_user.append(user_weight_list[i])
+    for i in store_list:
+        store = i.store
+        weighted_sum = []
+        weighted_user = []
+        for i in range(1, 10):
+            # 해당 영화를 보고 평점을 부여한 사람들의 유사도와 평점만 추가 (즉, 0이 아닌 경우에만 계산에 활용)
+            if int(title_user[store][user_index_list[i]]) != 0:
+                # 평점 * 유사도 추가
+                weighted_sum.append(title_user[store][user_index_list[i]] * user_weight_list[i])
+                # 유사도 추가
+                weighted_user.append(user_weight_list[i])
 
-    # 총 평점*유사도 / 총 유사도를 토대로 평점 예측
-    result = sum(weighted_sum)/sum(weighted_user)
+        # 총 평점*유사도 / 총 유사도를 토대로 평점 예측
+        result = sum(weighted_sum)/sum(weighted_user)
+
+        star_result.append(result)
+
+    print(star_result)
 
     categoies = Category.objects.all()
 
