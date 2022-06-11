@@ -6,9 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.db.models import Q
 from bs4 import BeautifulSoup
-from time import sleep
-import requests
-import random,string
+import requests,random,string
 
 
 def listparsing(food_url,page):
@@ -224,6 +222,9 @@ def travel_save(request):
 def review_load(request):
 	f = open('user_rating.csv', 'w', encoding='utf-8')
 	g = open('store_info.csv', 'w', encoding='utf-8')
+
+	f.write(f'userid,store,rating\n')
+	g.write(f'storeid,store\n')
 
 	comment = Comment.objects.all()
 	food = Food.objects.all()

@@ -49,8 +49,6 @@ def main_view(request):
 
         best_food = random.choice(best_store)
 
-
-
         return render(request, 'food/main.html', {'food_data' : food_data, 'categories1' : categories1, 'categories2' : categories2, 'best_food' : best_food})
     else:
         return render(request, 'user/login.html')
