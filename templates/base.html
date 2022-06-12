@@ -7,7 +7,6 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'detail.css' %}">
     <link rel="stylesheet" href="{% static 'search.css' %}">
@@ -17,7 +16,6 @@
     <title>{% block title %}{% endblock %} | DolChu</title>
 </head>
 <body>
-    
     <div class="main">
         <div class="user_info">
             <div class="logo_model">
@@ -45,7 +43,6 @@
                 <a href="/main/"><img src="{% static 'img/logo2.png' %}"></a>
             </div>
         </div>
-    
         <form method="post", action="/search/">
             {% csrf_token %}
         <div class="input_box">

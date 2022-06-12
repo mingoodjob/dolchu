@@ -204,6 +204,13 @@ body {
     background: #89da59;
     padding: 30px;
 }
+.category button{
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: transparent;
+    border: none;
+    color: #FFFFFF;
+}
 
 @media (max-width:790px){
     .food{

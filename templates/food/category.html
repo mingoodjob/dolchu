@@ -65,12 +65,25 @@
             <diV id="scroll" class="test">
             </diV>
 <script>
+    $('.cate_choice').click(function(){
+        cate = $(this).val();
+        sessionStorage.setItem("cate", cate)
+        console.log(cate)
+        $.ajax({
+                url : "{% url 'ajax_method' %}",
+                type : "POST",
+                data:{'cate':cate},
+                datatype: 'json',
+                success : function(cate) {
+                }})
+        });
+
     window.onscroll = function() {
         cate = sessionStorage.getItem('cate')
         console.log(cate)
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         $.ajax({
-            url : "{% url 'ajax_method_main' %}",
+            url : "{% url 'ajax_method' %}" + cate ,
             type : "GET",
             datatype: 'json',
             success : function(category) {
