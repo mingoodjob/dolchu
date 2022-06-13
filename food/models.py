@@ -21,7 +21,7 @@ class Food(models.Model):
     parking = models.CharField(max_length=256, blank=True)
     close = models.CharField(max_length=256, blank=True)
     holiday = models.CharField(max_length=256, blank=True)
-    staravg = models.FloatField(null=True, blank=True)
+    staravg = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 class Comment(models.Model):
@@ -29,9 +29,7 @@ class Comment(models.Model):
         db_table = "comments"
 
     username = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    # store = models.ForeignKey(Food, on_delete=models.CASCADE)
     store = models.ForeignKey(Food, on_delete=models.CASCADE)
-
     comment = models.CharField(max_length=256)
     star = models.FloatField()
 
