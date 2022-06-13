@@ -93,8 +93,6 @@ def ajax_method_main(request):
                     return HttpResponse(category, content_type="text/json-comment-filtered")
 
 
-
-
 @login_required
 def category_get(request,id):
     categoies = Category.objects.all()
@@ -115,7 +113,7 @@ def category_get(request,id):
             categories2.append(cate)
 
     category = Category.objects.get(id=id)
-    food_data = Food.objects.filter(category=category)[:10]
+    food_data = Food.objects.filter(category=category).order_by('-staravg')[:10]
 
     best_store = []
 
