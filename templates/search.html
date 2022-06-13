@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block title %}
 검색
 {% endblock %}
+
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'mypage.css' %}">
+<link rel="stylesheet" href="{% static 'search.css' %}">
 
-<body>
-
-    <div class=" search_container">
-        <div class="search_items">
-            {% for results in result %}
-
-            <div class="search_item">
-                <a href="/detail/{{ results.id }}">
-                <img src=" {{ results.img }}">
-                    <h1>{{ results.store }} <span>{{ results.staravg|floatformat }}</span></h1>
-                    <h2>{{ results.address}} {{ results.category.category}}</span></h2>
-                </a>
-            </div>
-            {% endfor %}
+<div class="container">
+    <div class="items">
+        {% for results in result %}
+        <div class="item">
+            <a href="/detail/{{ results.id }}">
+                <img src="{{ results.img }}">
+                <h1>
+                    {{ results.store }}
+                    <span class="category">{{ results.category.category}}</span>
+                </h1>
+                <p class="staravg">평점 {{ results.staravg }}</p>
+                <p class ="address">{{ results.address}}</p>
+            </a>
         </div>
+        {% endfor %}
     </div>
-</body>
-
+</div>
 {% endblock %}
