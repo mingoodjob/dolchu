@@ -28,7 +28,7 @@
             </div>
 
             <div>
-                <span>{{user.username}}</span>님 <a href="{% url 'logout' %}">로그아웃</a>
+                <a class="username" href="{% url 'mypage' user.username %}">{{user.username}}</a>님 <a class="logout" href="{% url 'logout' %}">로그아웃</a>
             </div>
             <div class="scroll_box">
                 <div class="scroll-top">

@@ -9,22 +9,20 @@
     font-family: 'KyoboHand';
 }
 
-.search_continaer {
+.search_container {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
-.search_itmes {
+.search_items {
     display: flex;
     justify-content: start;
     width: 1400px;
-    height: 1200px;
+    /* height: 1200px; */
     flex-wrap: wrap;
-
 }
 
 .search_item {
@@ -35,6 +33,7 @@
     height: 30%;
     filter: drop-shadow(5px 25px 25px rgba(0, 0, 0, 0.25));
     border-radius: 25px;
+    padding-bottom: 50px;
 }
 
 .search_item img {
