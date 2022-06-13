@@ -195,20 +195,6 @@ def star_avg(request):
 
 	return HttpResponse("<h1>Star Avg!</h1>")
 
-def travel(request):
-
-	lists = []
-
-	address = Food.objects.all().order_by('address')
-	for i in address:
-		add = i.address.split(' ')
-		add = add[2]
-		lists.append(add)
-	
-	result = list(set(lists))
-
-	return HttpResponse(f'{result}')
-
 def travel_save(request):
 	f = open('travel.txt', 'r', encoding='utf-8')
 	text = f.readlines()
