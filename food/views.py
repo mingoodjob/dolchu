@@ -6,6 +6,8 @@ from .models import Food, Comment, Category,Travel
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 import random
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 count = 0
@@ -53,18 +55,45 @@ def main_view(request):
     else:
         return render(request, 'user/login.html')
 
-#페이지 네이션 무한스크롤
+
+# 카테고리별  무한스크롤
 @login_required
-def ajax_method(request):
-    if request.method == 'GET':
-        global count 
-        count += 1
-        for i in str(count):
-            if i == i:
-                test = Food.objects.all()[count*10:count*10+10]
-                test = serializers.serialize('json',test)
-                return HttpResponse(test, content_type="text/json-comment-filtered")
-        
+@csrf_exempt
+def ajax_method(request, cate=None):
+    user = request.user.is_authenticated
+    if user:
+        if request.method == 'POST':
+            print(cate)
+            category = request.POST.get('category')
+            return HttpResponse(category, content_type="text/json-comment-filtered")
+        if request.method == 'GET':
+            print(cate)
+            global count
+            count += 1
+            for i in str(count):
+                if i == i:
+                    category = Category.objects.get(id=cate)
+                    food_data = Food.objects.filter(category=category).order_by('-staravg')[count * 10:count * 10 + 10]
+                    print(food_data)
+                    category = serializers.serialize('json', food_data)
+                    print(cate)
+                    return HttpResponse(category, content_type="text/json-comment-filtered")
+
+# 메인페이지 무한스크롤
+def ajax_method_main(request):
+    user = request.user.is_authenticated
+    if user:      
+        if request.method == 'GET':
+            global count
+            count += 1
+            for i in str(count):
+                if i == i:
+                    food_data = Food.objects.all().order_by('-staravg')[count * 10:count * 10 + 10]
+                    category = serializers.serialize('json', food_data)
+                    return HttpResponse(category, content_type="text/json-comment-filtered")
+
+
+
 
 @login_required
 def category_get(request,id):
@@ -86,7 +115,7 @@ def category_get(request,id):
             categories2.append(cate)
 
     category = Category.objects.get(id=id)
-    food_data = Food.objects.filter(category=category)
+    food_data = Food.objects.filter(category=category)[:10]
 
     best_store = []
 
@@ -103,7 +132,10 @@ def category_get(request,id):
 
     best_food = random.choice(best_store)
     
-    return render(request, 'food/main.html', {'food_data' : food_data, 'categories1' : categories1, 'categories2' : categories2, 'best_food' : best_food})
+
+
+    return render(request, 'food/category.html', {'food_data' : food_data, 'categories1' : categories1, 'categories2' : categories2, 'best_food' : best_food})
+
 @login_required
 def search(request):
     global count 
