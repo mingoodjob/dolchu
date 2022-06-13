@@ -28,7 +28,7 @@
                 <span>돌추</span> - <span>돌</span>하르방이 <span>추천</span>하는 <span>제주맛집</span>
             </div>
             <div>
-                <span>{{user.username}}</span>님 <a href="{% url 'logout' %}">로그아웃</a>
+                <a class="username" href="{% url 'mypage' user.username %}">{{user.username}}</a>님 <a class="logout" href="{% url 'logout' %}">로그아웃</a>
             </div>
             <div class="scroll_box">
                 <div class="scroll-top">
