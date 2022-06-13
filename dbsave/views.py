@@ -6,9 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.db.models import Q
 from bs4 import BeautifulSoup
-from time import sleep
-import requests
-import random,string
+import requests,random,string
 
 
 def listparsing(food_url,page):
@@ -136,7 +134,9 @@ def dbsave(request):
 	return HttpResponse("<h1>dbsave!</h1>")
 
 def random_review(reqeust):
-	commentlist = ['맛없습니다','맛있습니다','최고입니다','별로입니다','다신 먹지 않을게요']
+	good_comment = ['너무 맛있어요! 꼭 다시 방문할게요','재방문 각이네요ㅠㅠ 존맛탱','너무 맛있어서 여행가는 지인에게 추천했어요 ㅎㅎ','이번 여행에서 여기가 제일 맛있었습니다♡ 돌아가서 생각날 것 같아요!','정말 맛있어요! 추천합니다','사장님도 친절하시고 가게 쾌적하고 음식도 맛있어요 최고','무조건 재방문 할겁니다 맛있게 잘 먹었어요','음식이 깔끔하고 정갈합니다','가게 분위기도 너무 좋고 음식도 맛있어요','여기 방문한 건 최고의 선택..♡잘했다 나','정말 맛있어요 완전 추천!!!!!!','만족스럽게 잘 먹었습니다','전반적으로 다 만족스러운 식당이었어요 ㅎㅎ','쿨타임 차서 다시 방문했습니다 ㅋㅋㅋ 제 단골집이에요','여기 너무 맛있어요! 중독성 대박입니다','존맛탱 ㅠㅠㅠㅠㅠㅠㅠ:흰색_하트:','이 메뉴가 생각난다? 무조건 여기로 방문하시면 됩니다 후회없으실 거예요','왜 집에서 해먹으면 이 맛이 절대 안 날까요.. 사장님 최고...','맛있는데 또 친절해ㅠㅠㅠ 너무 좋아요','집이 서울인데 너무 맛있어서 어떡하죠.. 제주 오면 꼭 다시 들러야겠어요']
+	bad_comment = ['불친절하시고 음식도 그닥입니다','별로 맛있는 줄 모르겠네요 저는..','그냥 다른 곳 갈걸 ㅠ','대기가 긴데 그 값을 못하는 집 같아요.. 저는 비추천','조금만 더 친절하셨으면 좋았을 것 같아요','기대했던 거에 비해 맛이 별로네요','그냥 그렇습니다','굳이 시간을 내서 방문할 만한 곳은 아닌 것 같아요','쏘쏘..:찌푸린_얼굴:','먹을 만은 한데 사장님이 불친절하세요','맛이 전반적으로 별로라서 재방문은 안 할 것 같습니다..','가격이 너무 비싸요','주차 공간도 협소하고 대기도 길고 맛도 별로네요.. 완전 실망','기대를 너무 많이 했나봐요ㅠㅠㅠ','다른 리뷰처럼 막 극찬할 정도는 아닙니다','같은 가격이면 다른 곳 가는게 더 나을지도..?','조금만 더 저렴했거나 양이 많았으면 좋았을 거 같아요','전체적으로 음식들이 다 너무 짰어요..','그냥 그랬어요 평범하고 감흥없는 맛','맛은 나쁘진 않은데 양이 아쉽네요']
+	
 	foods = Food.objects.all()
 	users = UserModel.objects.all()
 	for food in foods:
@@ -145,9 +145,16 @@ def random_review(reqeust):
 		for user in users:
 			userid = user.id
 			userid = UserModel.objects.get(id=userid)
-			star = random.randint(1,5)
-			comment = random.choice(commentlist)
-			Comment.objects.create(username=userid, store=foodid, comment=comment, star=star)
+			probability = random.randint(0,1)
+			if probability == 1:	
+				star = random.randint(1,5)
+				if star > 3:
+					comment = random.choice(good_comment)
+				else: 
+					comment = random.choice(bad_comment)
+				Comment.objects.create(username=userid, store=foodid, comment=comment, star=star)
+			else:
+				pass
 
 	return HttpResponse("<h1>Random Review!</h1>")
 
@@ -215,6 +222,9 @@ def travel_save(request):
 def review_load(request):
 	f = open('user_rating.csv', 'w', encoding='utf-8')
 	g = open('store_info.csv', 'w', encoding='utf-8')
+
+	f.write(f'userid,store,rating\n')
+	g.write(f'storeid,store\n')
 
 	comment = Comment.objects.all()
 	food = Food.objects.all()

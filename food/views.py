@@ -5,6 +5,11 @@ from django.core import serializers
 from .models import Food, Comment, Category,Travel
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
+import random
+from django.views.decorators.csrf import csrf_exempt
+
+
+
 count = 0
 
 @login_required
@@ -15,35 +20,126 @@ def main_view(request):
     if user:
         food_data = Food.objects.all().order_by('-staravg')[:20]
         categoies = Category.objects.all()
-        return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
+
+        category_count = 0
+        categories1 = []
+        categories2 = []
+        for i in categoies:
+            category_count += 1
+            cate = {
+                'id': i.id,
+                'category' : i.category,
+                'desc' : i.desc,
+            }
+            if category_count <= 4:
+                categories1.append(cate)
+            else:
+                categories2.append(cate)
+
+        best_store = []
+
+        for x in categoies:
+            store = Food.objects.filter(category=x.id)
+            best_stores = store.all().order_by('-staravg')[:1]
+            for s in best_stores:
+                doc = {
+                    'id' : s.id,
+                    'store' : s.store,
+                    'img' : s.img,
+                }
+                best_store.append(doc)
+
+        best_food = random.choice(best_store)
+
+        return render(request, 'food/main.html', {'food_data' : food_data, 'categories1' : categories1, 'categories2' : categories2, 'best_food' : best_food})
     else:
         return render(request, 'user/login.html')
 
-#페이지 네이션 무한스크롤
+
+# 카테고리별  무한스크롤
 @login_required
-def ajax_method(request):
-    if request.method == 'GET':
-        global count 
-        count += 1
-        for i in str(count):
-            if i == i:
-                test = Food.objects.all()[count*10:count*10+10]
-                test = serializers.serialize('json',test)
-                return HttpResponse(test, content_type="text/json-comment-filtered")
-        
+@csrf_exempt
+def ajax_method(request, cate=None):
+    user = request.user.is_authenticated
+    if user:
+        if request.method == 'POST':
+            print(cate)
+            category = request.POST.get('category')
+            return HttpResponse(category, content_type="text/json-comment-filtered")
+        if request.method == 'GET':
+            print(cate)
+            global count
+            count += 1
+            for i in str(count):
+                if i == i:
+                    category = Category.objects.get(id=cate)
+                    food_data = Food.objects.filter(category=category).order_by('-staravg')[count * 10:count * 10 + 10]
+                    print(food_data)
+                    category = serializers.serialize('json', food_data)
+                    print(cate)
+                    return HttpResponse(category, content_type="text/json-comment-filtered")
+
+# 메인페이지 무한스크롤
+def ajax_method_main(request):
+    user = request.user.is_authenticated
+    if user:      
+        if request.method == 'GET':
+            global count
+            count += 1
+            for i in str(count):
+                if i == i:
+                    food_data = Food.objects.all().order_by('-staravg')[count * 10:count * 10 + 10]
+                    category = serializers.serialize('json', food_data)
+                    return HttpResponse(category, content_type="text/json-comment-filtered")
+
+
+
 
 @login_required
 def category_get(request,id):
     categoies = Category.objects.all()
+
+    category_count = 0
+    categories1 = []
+    categories2 = []
+    for i in categoies:
+        category_count += 1
+        cate = {
+            'id': i.id,
+            'category' : i.category,
+            'desc' : i.desc,
+        }
+        if category_count <= 4:
+            categories1.append(cate)
+        else:
+            categories2.append(cate)
+
     category = Category.objects.get(id=id)
-    food_data = Food.objects.filter(category=category)
+    food_data = Food.objects.filter(category=category)[:10]
+
+    best_store = []
+
+    for x in categoies:
+        store = Food.objects.filter(category=x.id)
+        best_stores = store.all().order_by('-staravg')[:1]
+        for s in best_stores:
+            doc = {
+                'id' : s.id,
+                'store' : s.store,
+                'img' : s.img,
+            }
+            best_store.append(doc)
+
+    best_food = random.choice(best_store)
     
-    return render(request, 'food/main.html', {'food_data' : food_data, 'categoies' : categoies})
+
+
+    return render(request, 'food/category.html', {'food_data' : food_data, 'categories1' : categories1, 'categories2' : categories2, 'best_food' : best_food})
+
 @login_required
 def search(request):
     global count 
     count = 0
-    print(count)
     if request.method =='POST':
         post = request.POST.get('search','')
         all = Food.objects.all()

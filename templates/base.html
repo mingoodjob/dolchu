@@ -1,74 +1,90 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'detail.css' %}">
     <link rel="stylesheet" href="{% static 'search.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>{% block title %}{% endblock %} | DolChu</title>
 </head>
+
 <body>
-    
     <div class="main">
         <div class="user_info">
-                안녕하세요. <span>{{user.username}}</span>반갑습니다. <a href="{% url 'logout' %}">로그아웃</a>
+            <div class="logo_model">
+                <a href="/"><img src="{% static 'img/logo_model.png' %}"></a>
+            </div>
+
+            <div class="nav_logo_title">
+                <span>돌추</span> - <span>돌</span>하르방이 <span>추천</span>하는 <span>제주맛집</span>
+            </div>
+            <div>
+                <span>{{user.username}}</span>님 <a href="{% url 'logout' %}">로그아웃</a>
+            </div>
+            <div class="scroll_box">
+                <div class="scroll-top">
+                    <a href="#" onClick="javascript:window.scrollTo(0,0)">맨위로</a>
+                </div>
+            </div>
         </div>
         <div class="logo">
             <div>
                 <a href="/main/"><img src="{% static 'img/logo_model.png' %}"></a>
             </div>
-            
+
             <div class="logo_text">
                 <a href="/main/"><img src="{% static 'img/logo2.png' %}"></a>
             </div>
         </div>
-    
-        <form method="post", action="/search/">
+   
+        <form method="post" , action="/search/">
+
             {% csrf_token %}
-        <div class="input_box">
-            <div class="serch">
-                <button type="submit" value="search" >검색</button>
+            <div class="input_box">
+                <div class="serch">
+                    <button type="submit" value="search">검색</button>
+                </div>
+                <div class="glass">
+                    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                </div>
+                <div class="serch_text">
+                    <span>돌</span>하르방이 <span>추</span>천하는 <span>제주</span>맛집리스트
+                </div>
+                <input type="search" name="search" class="event">
             </div>
-            <div class="glass">
-                <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-            </div>
-            <div class="serch_text">
-                <span>돌</span>하르방이 <span>추</span>천하는 <span>제주</span>맛집리스트
-            </div>
-                <input type="search" name="search" class="event">    
-            </div>
-        </div>
-        </form>
+    </div>
+    </form>
 
 
-<script>
-    const page_input = document.querySelector(".event");
-    const page_input_icon = document.querySelector(".serch_text");
-    page_input.addEventListener('focus', (event) => {
-        page_input_icon.style.visibility = "hidden";
-    })
-    page_input_icon.addEventListener('click', (event) => {
-        page_input_icon.style.visibility = "hidden";
-        page_input.focus()
-    })
-    page_input.addEventListener('blur', (e) =>{
-        page_input_icon.style.visibility = "visible";
-        page_input.value = "";
-    })
+    <script>
+        const page_input = document.querySelector(".event");
+        const page_input_icon = document.querySelector(".serch_text");
+        page_input.addEventListener('focus', (event) => {
+            page_input_icon.style.visibility = "hidden";
+        })
+        page_input_icon.addEventListener('click', (event) => {
+            page_input_icon.style.visibility = "hidden";
+            page_input.focus()
+        })
+        page_input.addEventListener('blur', (e) => {
+            page_input_icon.style.visibility = "visible";
+            page_input.value = "";
+        })
 
 
-</script>
-{% block content %}
+    </script>
+    {% block content %}
 
-{% endblock %}
+    {% endblock %}
 </body>
+
 </html>
