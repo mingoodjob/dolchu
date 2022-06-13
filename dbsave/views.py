@@ -24,7 +24,7 @@ def listparsing(food_url,page):
 
 	for i in soup:
 		linklist.append(i.a['href'])
-  
+
 	return linklist
 
 def storeparsing(url):
@@ -60,7 +60,7 @@ def storeparsing(url):
 			tel = ''
 	except:
 		tel = ''
-  
+
 	try:
 		if data[3][0] == '가격대':
 			price = data2[3][0]
@@ -68,7 +68,7 @@ def storeparsing(url):
 			price = ''
 	except:
 		price = ''
-  
+
 	try:
 		if data[4][0] == '주차':
 			parking = data2[4][0]
@@ -76,7 +76,7 @@ def storeparsing(url):
 			parking = ''
 	except:
 		parking = ''
-  
+
 	try:
 		if data[5][0] == '영업시간':
 			close = data2[5][0]
@@ -84,7 +84,7 @@ def storeparsing(url):
 			close = ''
 	except:
 		close = ''
- 
+
 	img = soup.select('.restaurant-photos-item')
 
 	imgs = []
@@ -111,7 +111,7 @@ def food_switch(argument):
         7: "https://www.mangoplate.com/search/%EC%A0%9C%EC%A3%BC%EB%8F%84-%EC%B9%B4%ED%8E%98?keyword=%EC%A0%9C%EC%A3%BC%EB%8F%84%20%EC%B9%B4%ED%8E%98&page=",
         8: "https://www.mangoplate.com/search/%EC%A0%9C%EC%A3%BC%EB%8F%84-%EC%A3%BC%EC%A0%90?keyword=%EC%A0%9C%EC%A3%BC%EB%8F%84%20%EC%A3%BC%EC%A0%90&page=",
     }
- 
+
     return switcher.get(argument, "nothing")
 
 
