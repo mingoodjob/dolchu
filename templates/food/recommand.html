@@ -20,23 +20,26 @@
 <div class="category">
     <div>
         {% for cate in categories1 %}
-        <a href="/category/{{cate.id}}">
-            <div class="food">
-                <div class="kfoodimg">{{cate.desc}}</div>
-                <div class="kfoodtext">{{cate.category}}</div>
-            </div>
+        <button class="cate_choice" value="{{cate.id}}">
+            <a href="/category/{{cate.id}}">
+                <div class="food">
+                    <div class="kfoodimg">{{cate.desc}}</div>
+                    <div class="kfoodtext">{{cate.category}}</div>
+                </div>
+        </button>
         </a>
         {% endfor %}
     </div>
-
     <div>
         {% for cate in categories2 %}
-        <a href="/category/{{cate.id}}">
-            <div class="food">
-                <div class="kfoodimg">{{cate.desc}}</div>
-                <div class="kfoodtext">{{cate.category}}</div>
-            </div>
-        </a>
+        <button class="cate_choice" value="{{cate.id}}">
+            <a href="/category/{{cate.id}}">
+                <div class="food">
+                    <div class="kfoodimg">{{cate.desc}}</div>
+                    <div class="kfoodtext">{{cate.category}}</div>
+                </div>
+            </a>
+        </button>
         {% endfor %}
     </div>
 </div>
