@@ -16,7 +16,7 @@
         <div>
             <img src="{% static  "/img/logo.png" %}" class="logo">
         </div>
-        
+
         <div class="logo_model_box">
             <div class="stone">
                 <img src="{% static  "/img/logo_model.png" %}" class="logo_model">
@@ -34,9 +34,9 @@
             {% csrf_token %}
             <div class="login_input_box">
                 <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
-                <input class="login_input"  name="username" type="id" placeholder="아이디">
+                <input class="login_input" name="username" type="id" placeholder="아이디">
             </div>
-        
+
             <div class="login_input_box">
                 <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input" name="password" type="password" placeholder="비밀번호">
@@ -47,7 +47,7 @@
                 <button type="submit" class="login_submit">로그인</button>
             </div>
         </form>
-        </div>
+    </div>
 </body>
 
 </html>

@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-    검색
+검색
 {% endblock %}
 {% block content %}
+
 <body>
 
     <div class=" search_continaer">
         <div class="search_itmes">
-            {% for results in result %} 
+            {% for results in result %}
 
             <div class="search_item">
-                <a href= "/detail/{{ results.id }}"">
-                <img src="{{ results.img }}">
-                <h1>{{ results.store }} <span>{{ results.staravg|floatformat }}</span></h1>
-                <h2>{{ results.address}} {{ results.category.category}}</span></h2> 
+                <a href="/detail/{{ results.id }}"">
+                <img src=" {{ results.img }}">
+                    <h1>{{ results.store }} <span>{{ results.staravg|floatformat }}</span></h1>
+                    <h2>{{ results.address}} {{ results.category.category}}</span></h2>
                 </a>
             </div>
-            {% endfor %} 
+            {% endfor %}
         </div>
     </div>
 </body>

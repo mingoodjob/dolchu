@@ -10,7 +10,7 @@ $(document).ready(function () {
     })
 
     $("#d_list").click(function () {
-        
+
         $("#m_storelist").hide()
         $("#d_storelist").show()
 

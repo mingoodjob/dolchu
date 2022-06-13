@@ -16,7 +16,7 @@
         <div>
             <img src="{% static  "/img/logo.png" %}" class="logo">
         </div>
-        
+
         <div class="logo_model_box">
             <img src="{% static  "/img/logo_model.png" %}" class="logo_model">
             <div class="logo_title">
@@ -25,13 +25,17 @@
                 <div><span>맛 집</span> 리 스 트</div>
             </div>
         </div>
-        
+
         {% if error %}
         <div class="error"><i class="fa-solid fa-triangle-exclamation fa-lg"></i><span>{{ error }}</span></div>
         {% endif %}
         {% if sucsess %}
-        <div class="sucsess"><a href="{% url 'login' %}"><div>회원가입이 완료 되었습니다. 로그인페이지로 이동</div></a>
-            <a href="{% url 'login' %}"><div class="logo_box"><img src="{% static  "/img/logo_model.png" %}" class="logologo"></div></a>
+        <div class="sucsess"><a href="{% url 'login' %}">
+                <div>회원가입이 완료 되었습니다. 로그인페이지로 이동</div>
+            </a>
+            <a href="{% url 'login' %}">
+                <div class="logo_box"><img src="{% static  "/img/logo_model.png" %}" class="logologo"></div>
+            </a>
         </div>
         {% endif %}
         <form action="{% url 'join' %}" method="post">
@@ -40,7 +44,7 @@
                 <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input" name="username" type="id" placeholder="아이디">
             </div>
-        
+
             <div class="login_input_box">
                 <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input" name="password" type="password" placeholder="비밀번호">
@@ -50,13 +54,13 @@
                 <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
                 <input class="login_input" name="password2" type="password" placeholder="비밀번호 확인">
             </div>
-        
+
             <div class="login_button">
                 <a href="{% url 'home' %}"><button type="button" class="let_join">로그인</button></a>
                 <button type="submit" class="login_submit">회원가입</button>
             </div>
         </form>
-        </div>
+    </div>
 </body>
 
 </html>
