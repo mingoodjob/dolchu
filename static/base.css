@@ -40,6 +40,23 @@ p {
     left: 0;
 }
 
+.username {
+    background-color: #410dff;
+    color: aliceblue;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0 5px;
+}
+
+.logout {
+    text-decoration: none;
+    background-color: #ff420e;
+    color: white;
+    border-radius: 5px;
+    padding: 0px 10px;
+    margin: 0 20px;
+}
+
 .user_info span:nth-child(1) {
     background-color: #410dff;
     color: aliceblue;
@@ -50,7 +67,6 @@ p {
 
 .user_info a {
     text-decoration: none;
-    background-color: #ff420e;
     color: white;
     border-radius: 5px;
     padding: 0px 10px;
