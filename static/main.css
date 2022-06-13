@@ -1,23 +1,12 @@
-@font-face {
-    font-family: 'KyoboHand';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-a {
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-}
-
-* {
-    font-family: 'KyoboHand';
-}
-
 body {
     overflow-x: hidden;
     margin: 0;
     background-color: #f98866cb;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 .container {
@@ -41,46 +30,56 @@ body {
     width: 230px;
 }
 
-.mainfoodimg {
-    position: relative;
-    width: 80%;
-    max-width: 800px;
-    max-height: 400px;
-    min-width: 350px;
-    /* width: 100%; height: 100%; */
-    opacity: 0.8;
-    /* margin-bottom: 30px; */
-    object-fit: cover;
-    /* filter: drop-shadow(5px 25px 25px rgba(0, 0, 0, 0.25));  */
-    border-radius: 25px;
-}
-
-.mainfoodtext {
-    padding: 50px 150px;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: rgb(0, 0, 0);
-    font-size: 35px;
-    position: absolute;
-    border-radius: 20px;
-    /* top: 420px; */
-}
-
-.mainfoodtext h1 {
-    color: rgb(255, 255, 255);
-}
-
-.mainfoodimgs {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
 .mainfoodwrap {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
+}
+
+.mainfood_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainfoodtext {
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 20px;
+    writing-mode: vertical-lr;
+    margin-right: 10px;
+}
+
+.mainfoodtext h1 {
+    font-family: 'NanumGiBbeumBarkEum';
+    font-size: 70px;
+}
+
+.mainfoodtext p {
+    font-family: 'NanumGiBbeumBarkEum';
+    color: #F9AB5E;
+    text-align: end;
+    padding-bottom: 20px;
+    font-size: 40px;
+}
+
+.mainfoodimgs {
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+}
+
+.mainfoodimg {
+    /* position: relative; */
+    width: 500px;
+    /* max-width: 800px;
+    max-height: 400px;
+    min-width: 350px; */
+    opacity: 0.8;
+    object-fit: contain;
+    border-radius: 20px;
 }
 
 .category {
@@ -93,7 +92,6 @@ body {
 .category>div {
     display: flex;
     margin: 0px 0px;
-    /* width: 100%; */
     justify-content: center;
 }
 
