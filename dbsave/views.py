@@ -229,3 +229,22 @@ def review_load(request):
 	g.close()
 
 	return HttpResponse('로드 끝남')
+
+def dbpush(request):
+	f = open('db.csv', 'r', encoding='utf-8')
+	foods = f.readlines()
+	for food in foods:
+		category = Category.objects.get(id=food.split('@@')[7])
+		Food.objects.create(store=food.split('@@')[0], address=food.split('@@')[1], img=food.split('@@')[2], tel=food.split('@@')[3], price=food.split('@@')[4], parking=food.split('@@')[5], close=food.split('@@')[6], category=category)
+		
+	f.close()
+
+	# f = open('db.csv', 'w', encoding='utf-8')
+	# foods = Food.objects.all()
+	# # Food.objects.create(store=store, address=address, img=img, tel=tel, price=price, parking=parking, close=close, category=category)
+	# for food in foods:
+	# 	f.write(f'{food.store}@@{food.address}@@{food.img}@@{food.tel}@@{food.price}@@{food.parking}@@{food.close}@@{food.category.id}\n')
+
+	# f.close()
+
+	return HttpResponse('푸시 끝남')

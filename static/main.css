@@ -92,6 +92,9 @@ body {
 
 .category>div {
     display: flex;
+    margin: 0px 0px;
+    /* width: 100%; */
+    justify-content: center;
 }
 
 .kfoodimg {
@@ -108,8 +111,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    width: 100px;
-    min-width: 100px;
+    width: 70px;
+    margin: 0px 10px;
 }
 
 .listwrap {
@@ -163,6 +166,7 @@ body {
 #m-storelist {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .m-storelist {
@@ -309,5 +313,8 @@ body {
 @media (max-width: 435px) {
     .notstar div {
         font-size: 20px;
+    }
+    .food{
+        margin: 0px 2px;
     }
 }

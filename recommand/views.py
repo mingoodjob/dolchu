@@ -82,13 +82,19 @@ def recommand(request):
     store_list = []
 
     for i in recommand_list:
-        store = Food.objects.get(store=i)
+        try:
+            store = Food.objects.get(store=i)
+        except:
+            pass
         store_list.append(store)
 
     star_result = []
 	#위에 10개의 상점을 돌면서 현재 유저가 부여될 평점을 예측	
     for i in store_list:
-        store = i.store
+        try:
+            store = i.store
+        except:
+            pass
         weighted_sum = []
         weighted_user = []
         for i in range(1, 10):

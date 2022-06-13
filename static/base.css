@@ -161,14 +161,22 @@ p {
     width: 270px;
     height: 270px;
 }
+.logo_model{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .logo_model a {
     background: none;
+    margin: 0;
+    padding: 0;
 }
 
 .logo_model a img {
     width: 60px;
     height: 60px;
+    margin-top: 5px;
 }
 
 .nav_logo_title {
@@ -264,7 +272,8 @@ p {
     }
 
     .scroll-top {
-        top: -82px;
+        top: -35px;
+        right: -130px;
     }
 
     .main {
