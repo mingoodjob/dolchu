@@ -2,7 +2,6 @@
 
 {% block title %}
 마이페이지
-
 {% endblock %}
 
 {% block content %}
@@ -18,17 +17,17 @@
                         <img src=" {{ stores.img }}">
                         <h1>{{ stores.store }}</h1>
                         {% if comments.star == 1 %}
-                            <span class="star">⭐</span>
+                        <p class="star">⭐</p>
                         {% elif comments.star == 2 %}
-                            <span class="star">⭐⭐</span>
+                        <p class="star">⭐⭐</p>
                         {% elif comments.star == 3 %}
-                            <span class="star">⭐⭐⭐</span>
+                        <p class="star">⭐⭐⭐</p>
                         {% elif comments.star == 4 %}
-                            <span class="star">⭐⭐⭐⭐</span>
+                        <p class="star">⭐⭐⭐⭐</p>
                         {% else %}
-                            <span class="star">⭐⭐⭐⭐⭐</span>
+                        <p class="star">⭐⭐⭐⭐⭐</p>
                         {% endif %}
-                        <h2>{{ comments.comment}}</h2>
+                        <p class="comment">{{ comments.comment}}</p>
                     </a>
                 </div>
             {% endfor %}
