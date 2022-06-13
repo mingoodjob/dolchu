@@ -239,6 +239,30 @@ a {
 }
 
 @media (max-width:870px) {
+    .mainfoodwrap {
+        margin-bottom: 10px;
+    }
+
+    .mainfoodtext {
+        height: 400px;
+    }
+
+    .mainfoodtext h1 {
+        font-size: 40px;
+    }
+
+    .mainfoodtext p {
+        font-size: 30px;
+    }
+
+    .mainfoodimgs {
+        height: 400px;
+    }
+
+    .mainfoodimg {
+        width: auto;
+    }
+
     .food {
         flex-basis: 20%;
     }
@@ -259,13 +283,17 @@ a {
         font-size: 20px;
     }
 
+    .listwrap {
+        margin: 40px 0;
+    }
+
     .dolchu_guide {
-    width: 220px;
-    max-height: 150px;
-    left: -100px;
-    top: -120px;
-    padding: 10px;
-    font-size: 15px;
+        width: 220px;
+        max-height: 150px;
+        left: -100px;
+        top: -120px;
+        padding: 10px;
+        font-size: 15px;
     }
     
     .m-storelist div img {
@@ -284,15 +312,6 @@ a {
 
     .m-storelist div {
         margin: 0px;
-    }
-
-    .mainfoodtext {
-        padding: 30px 70px;
-        font-size: 15px;
-    }
-
-    .mainfoodimg {
-        width: 350px;
     }
 }
 
