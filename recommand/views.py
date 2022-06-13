@@ -115,5 +115,6 @@ def recommand(request):
             'star': x,
         }
         dolchu.append(dolchu_data)
+        dolchu.sort(key=lambda x: x['star'], reverse=True)
 
     return render(request, 'food/recommand.html',{'dolchu' : dolchu, 'store_list':store_list, 'star_result':star_result, 'categories1':categories1,'categories2':categories2,'best_food':best_food})
