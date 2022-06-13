@@ -43,7 +43,7 @@ def recommand(request):
     best_food = random.choice(best_store)
 
     if not comment:
-        return render(request, 'food/recommand.html', {'message': '평점을 남겨주세요', 'best_food' : best_food })
+        return render(request, 'food/recommand.html', {'message': '평점을 남겨주세요', 'best_food' : best_food, 'categories1' : categories1, 'categories2' : categories2})
 
 
     rating = pd.read_csv('user_rating.csv')
@@ -70,7 +70,7 @@ def recommand(request):
     recommand_store = title_user.query(f"userid == {user}").sort_values(ascending=False, by=user, axis=1)
     # 위에꺼 리스트로 10개만 가져옴
     recommand_list = recommand_store.columns.tolist()[:10]
-    		
+
 	# pandas table to list
 	# 만약 해당 유저가 아직 보지 않은 영화에 대해서, 평점을 예측하고자 한다면?
 	# (어떤 유저와 비슷한 정도 * 그 유저가 영화에 대해 부여한 평점) 을 더해서 (유저와 비슷한 정도의 합)으로 나눠보면 됨!
