@@ -201,13 +201,14 @@ body {
 .storename {
     color: #ff420e;
 }
+
 .notstar{
-    
     width: 100%;
     display: flex;
     justify-content: center;
-    
+    margin-bottom: 50px;
 }
+
 .notstar div{
     border-radius: 20px;
     text-align: center;
