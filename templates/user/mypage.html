@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+마이페이지
+
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'mypage.css' %}">
+
+<div class="container">
+    <div class="items">
+        {% if find_comment %}
+            {% for stores, comments in reviews.review_stores %}
+                <div class="item">
+                    <a href="/detail/{{ stores.id }}">
+                        <img src=" {{ stores.img }}">
+                        <h1>{{ stores.store }}</h1>
+                        {% if comments.star == 1 %}
+                            <span class="star">⭐</span>
+                        {% elif comments.star == 2 %}
+                            <span class="star">⭐⭐</span>
+                        {% elif comments.star == 3 %}
+                            <span class="star">⭐⭐⭐</span>
+                        {% elif comments.star == 4 %}
+                            <span class="star">⭐⭐⭐⭐</span>
+                        {% else %}
+                            <span class="star">⭐⭐⭐⭐⭐</span>
+                        {% endif %}
+                        <h2>{{ comments.comment}}</h2>
+                    </a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="notcomment">⭐ 작성한 리뷰가 없어요 ⭐</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
