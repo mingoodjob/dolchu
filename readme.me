@@ -1,2 +1,105 @@
-DOLCHU FOOD
-돌하르방이 추천하는 제주 맛집 리스트 🍊
+## : 돌하르방이 추천하는 제주 맛집 리스트 🍊
+
+---
+
+### 팀원소개
+
+- 이민기
+- 최재완
+- 김하진
+- 백선영
+
+### 목업
+
+![cap.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a7030561-445b-4c5b-b546-c54a9884c704/cap.png)
+
+### ERD 다이어그램
+
+![dolchu.drawio (2).png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3570130d-b0fb-456c-bc76-816fbd1b84ec/dolchu.drawio_(2).png)
+
+### API 설계도
+
+| Method | End Point | request | return | DB |  |
+| --- | --- | --- | --- | --- | --- |
+| POST | /sign-up | ‘username’:username,
+’password’:password,
+’password2’:password2 | sign-in.html | USERMODEL():
+’id’: PK
+’username’ : username
+’password’: password |  |
+| POST | /sign-in | ‘username’:username,
+’password’:password | {’result’ : success,
+ ‘result’ : fail }
+main.html |  |  |
+| POST | /detail/<int:FOODMODEL.id>/comment
+
+ | 'comment’:comment,
+’star’ : star | detail.html
+{ ‘comment’ : comment,
+  ‘star’: star
+} | COMMENT MODEL():
+’id’: PK
+’username’: username
+’comment’: comment |  |
+| GET | /main |  | main.html,
+USER MODEL():
+{’username’ : username},
+FOOD MODEL():
+{’id’ : PK,
+ ‘store’ : store,
+ ‘img’: img,
+ ‘ star’ : star,
+ ‘ address’ : address,
+} |  |  |
+| GET | /login |  | login.html |  |  |
+| GET | /signup |  | signup.html |  |  |
+| GET | /detail/<int:FOODMODEL.id> |  | detail.html,
+COMMENT MODEL():
+{ ‘id’ : PK,
+  ‘user’ : user,
+  ‘name’ : name,
+  ‘comment’ : comment,
+  ‘star: star,
+},
+FOOD MODEL():
+{ ‘id’: PK,
+  ‘store’ : store,
+  ‘img’:  img,
+  ‘star_avg’: star_avg,
+  ‘category’: category,
+  ‘address’ : address,
+  ‘tel’ : tel,
+  ‘price’: price,
+  ‘parking’ : parking,
+  ‘close: close,
+  ‘holliday’:  holliday,
+}, |  |  |
+
+### TREE
+
+![스크린샷 2022-06-03 오전 9.19.34.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4afccfaf-4ff6-4d26-a986-dd7609c25b1e/스크린샷_2022-06-03_오전_9.19.34.png)
+
+### Position
+
+- 이민기
+    - 로그인 / 회원가입 / 잠재요인 협업필터링
+- 최재완
+    - 상세 페이지 : 코멘트 기능 / 잠재요인 협업필터링
+- 김하진
+    - 상세 페이지 : 지도 기능 / 잠재요인 협업필터링
+- 백선영
+    - 메인 페이지 / 잠재요인 협업필터링
+    
+
+### **일정표**
+
+| 날짜 | 6/3 | 6/4~6/6 | 6/7 | 6/8 |
+| --- | --- | --- | --- | --- |
+| 목표 | 프론트 완성(merge) | 백엔드 작업 | 임의의 데이터 추가
+크롤링 작업 | 임의의 데이터로 테스트 |
+| 날짜 | 6/9 | 6/10 | 6/11~6/12 | 6/13 |
+| 목표 | 백엔드작업
+모델 과 합치기 | 전체적인 
+merge / test | 최종점검 / 촬영 
+프로젝트 마무리 | 발표 
+1등하기.대장님을위해 |
