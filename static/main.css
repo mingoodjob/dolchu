@@ -300,7 +300,7 @@ body {
     }
 }
 
-@media (max-width: 715px) {
+@media (max-width: 811px) {
     .notstar div {
         font-size: 30px;
     }
