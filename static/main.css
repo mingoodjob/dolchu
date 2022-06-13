@@ -236,7 +236,7 @@ body {
     color: #FFFFFF;
 }
 
-@media (max-width:790px) {
+@media (max-width:870px) {
     .food {
         flex-basis: 20%;
     }
