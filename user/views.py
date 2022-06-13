@@ -1,7 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import UserModel
-from food.views import main_view
+from food.models import Comment, Food
 from django.contrib.auth import get_user_model
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -61,3 +60,25 @@ def join(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
+@login_required
+def mypage_view(request, username):
+    if request.method == 'GET':
+        username_id = UserModel.objects.get(username=username).id
+        comments = Comment.objects.filter(username_id=username_id)
+        if not comments:
+            find_comment = False
+            return render(request, 'user/mypage.html', {'find_comment': find_comment})
+        else:
+            find_comment = True
+            stores = []
+            for comment in comments:
+                store = Food.objects.get(id=comment.store_id)
+                stores.append(store)
+
+            review_stores = zip(stores, comments)
+            reviews = {
+                'review_stores': review_stores
+            }
+            return render(request, 'user/mypage.html', {'find_comment': find_comment, 'comments': comments, 'reviews': reviews})
