@@ -1,0 +1,16 @@
+.category {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: none;
+    font-size: 20px;
+}
+
+.staravg {
+    color: #ff420e;
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: none;
+}
+
+.address {
+    font-size: 20px;
+}

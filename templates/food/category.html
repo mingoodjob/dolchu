@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}
+메인페이지
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumGiBbeumBarkEum.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'main.css' %}">
+
+<div class="mainfoodwrap">
+    <a class="mainfood_box" href="{% url 'detail_view' best_food.id %}">
+        <div class="mainfoodtext">
+            <h1>오늘의 맛집</h1>
+            <p>{{ best_food.store }}</p>
+        </div>
+        <div class="mainfoodimgs">
+            <img class="mainfoodimg" src="{{ best_food.img }}">
+        </div>
+    </a>
+</div>
+
+<div class="category">
+    <div>
+        {% for cate in categories1 %}
+        <button class="cate_choice" value="{{ cate.id }}">
+            <a href="/category/{{ cate.id }}">
+                <div class="food">
+                    <div class="kfoodimg">{{ cate.desc }}</div>
+                    <div class="kfoodtext">{{ cate.category }}</div>
+                </div>
+        </button>
+        </a>
+        {% endfor %}
+    </div>
+    <div>
+        {% for cate in categories2 %}
+        <button class="cate_choice" value="{{ cate.id }}">
+            <a href="/category/{{ cate.id }}">
+                <div class="food">
+                    <div class="kfoodimg">{{ cate.desc }}</div>
+                    <div class="kfoodtext">{{ cate.category }}</div>
+                </div>
+            </a>
+        </button>
+        {% endfor %}
+    </div>
+</div>
+<div class="listwrap">
+    <div><a href="/main/" class="list" id="m_list"><b>맛집리스트</b></a></div>
+    <div><a href="/recommand/" class="list" id="d_list"><b>돌추리스트</b></a></div>
+</div>
+<!-- <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5"> -->
+<div id="m_storelist">
+    {% for food in food_data %}
+    <div class="m-storelist">
+        <a href="/detail/{{ food.id }}">
+            <div><img class="storeimg" src="{{ food.img }}"></div>
+        </a>
+        <a href="/detail/{{ food.id }}">
+            <div class="storedetail">
+                <div class="storename">
+                    <h2>{{ food.store }}</h2>
+                </div>
+                <div class="address">
+                    <h3>{{ food.address }}</h3>
+                </div>
+        </a>
+    </div>
+</div>
+<!-- <hr style="width: 1000px; border-color:#F9AB5E; background-color:#F9AB5E; border:0.5"> -->
+{% endfor %}
+<diV id="scroll" class="test">
+</diV>
+<script>
+    $('.cate_choice').click(function () {
+        cate = $(this).val();
+        sessionStorage.setItem("cate", cate)
+        $.ajax({
+            url: "{% url 'ajax_method' %}",
+            type: "POST",
+            data: {
+                'cate': cate
+            },
+            datatype: 'json',
+            success: function (cate) {}
+        })
+    });
+
+    window.onscroll = function () {
+        cate = sessionStorage.getItem('cate')
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            $.ajax({
+                url: "{% url 'ajax_method' %}" + cate,
+                type: "GET",
+                datatype: 'json',
+                success: function (category) {
+                    let test1 = document.getElementById('#scroll')
+                    category.forEach(function (element) {
+                        let store = element['fields']['store']
+                        let address = element['fields']['address']
+                        let id = element['pk']
+                        let img = element['fields']['img']
+                        $("#scroll").append(`
+                            <a href="/detail/${id}"><div class="m-storelist">
+                                <div><img class="storeimg" src="${img}"></div>
+                                <div class="storedetail">
+                                    <div class="storename">
+                                        <h2>${store}</h2>
+                                    </div>
+                                    <div class="address">
+                                        <h3>${address}</h3>
+                                    </div>
+                                </div>
+                            </div></a>
+                        `)
+                    });
+                }
+            });
+        };
+    }
+</script>
+<script type="text/javascript" src="{% static 'main.js' %}"></script>
+{% endblock %}

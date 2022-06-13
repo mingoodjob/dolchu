@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+추천리스트
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<link href="https://hangeul.pstatic.net/hangeul_static/css/NanumGiBbeumBarkEum.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'main.css' %}">
+
+<div class="mainfoodwrap">
+    <a class="mainfood_box" href="{% url 'detail_view' best_food.id %}">
+        <div class="mainfoodtext">
+            <h1>오늘의 맛집</h1>
+            <p>{{ best_food.store }}</p>
+        </div>
+        <div class="mainfoodimgs">
+            <img class="mainfoodimg" src="{{ best_food.img }}">
+        </div>
+    </a>
+</div>
+
+<div class="category">
+    <div>
+        {% for cate in categories1 %}
+        <button class="cate_choice" value="{{ cate.id }}">
+            <a href="/category/{{ cate.id }}">
+                <div class="food">
+                    <div class="kfoodimg">{{ cate.desc }}</div>
+                    <div class="kfoodtext">{{ cate.category }}</div>
+                </div>
+        </button>
+        </a>
+        {% endfor %}
+    </div>
+    <div>
+        {% for cate in categories2 %}
+        <button class="cate_choice" value="{{ cate.id }}">
+            <a href="/category/{{ cate.id }}">
+                <div class="food">
+                    <div class="kfoodimg">{{ cate.desc }}</div>
+                    <div class="kfoodtext">{{ cate.category }}</div>
+                </div>
+            </a>
+        </button>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="listwrap">
+    <a href="/main/" class="list" id="m_list">맛집리스트</a>
+    <a href="/recommand/" class="list" id="d_list">
+        돌추리스트
+        <div class="dolchu_guide">
+            <p>돌추리스트란?</p>
+            <p>사용자가 남긴 리뷰 데이터를 반영하여 맛집을 추천해주는 기능입니다</p>
+            <p>취향저격을 위해 리뷰를 많이 남겨주세요!!</p>
+        </div>
+    </a>
+</div>
+
+<div id="m_storelist">
+    {% for store in dolchu %}
+    <div class="m-storelist">
+        <a href="/detail/{{ store.id }}">
+            <div>
+                <img class="storeimg" src="{{ store.img }}">
+            </div>
+        </a>
+        <a href="/detail/{{ store.id }}">
+            <div class="storedetail">
+                <div class="storename">
+                    <h2>{{ store.store }}</h2>
+                    <h3>당신의 예상 평점은? ({{ store.star | floatformat }})</h3>
+                </div>
+                <div class="address">
+                    <h3>{{ store.address }}</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% if message %}
+<div class="notstar">
+    <div>
+        ⭐ {{ message }} ⭐
+    </div>
+</div>
+{% endif %}
+{% endblock %}

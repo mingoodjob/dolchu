@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
+    <script src="https://kit.fontawesome.com/0e01622099.js" crossorigin="anonymous"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user.css' %}">
+    <title>로그인</title>
+</head>
+
+<body>
+    <div class="main">
+        <div>
+            <img src="{% static  '/img/logo.png' %}" class="logo">
+        </div>
+
+        <div class="logo_model_box">
+            <div class="stone">
+                <img src="{% static  '/img/logo_model.png' %}" class="logo_model">
+            </div>
+            <div class="logo_title">
+                <div><span>돌</span>하르방이</div>
+                <div><span style="margin-left: 30px;">추</span>천하는</div>
+                <div><span>맛 집</span> 리 스 트</div>
+            </div>
+        </div>
+        {% if error %}
+        <div class="error"><i class="fa-solid fa-triangle-exclamation fa-lg"></i><span>{{ error }}</span></div>
+        {% endif %}
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="login_input_box">
+                <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
+                <input class="login_input" name="username" type="id" placeholder="아이디">
+            </div>
+
+            <div class="login_input_box">
+                <div class="login_input_icon"><img src="{% static '/img/logo_model.png' %}"></div>
+                <input class="login_input" name="password" type="password" placeholder="비밀번호">
+            </div>
+
+            <div class="login_button">
+                <a href="{% url 'join' %}"><button type="button" class="let_join">회원가입</button></a>
+                <button type="submit" class="login_submit">로그인</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
