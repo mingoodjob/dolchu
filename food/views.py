@@ -63,20 +63,16 @@ def ajax_method(request, cate=None):
     user = request.user.is_authenticated
     if user:
         if request.method == 'POST':
-            print(cate)
             category = request.POST.get('category')
             return HttpResponse(category, content_type="text/json-comment-filtered")
         if request.method == 'GET':
-            print(cate)
             global count
             count += 1
             for i in str(count):
                 if i == i:
                     category = Category.objects.get(id=cate)
                     food_data = Food.objects.filter(category=category).order_by('-staravg')[count * 10:count * 10 + 10]
-                    print(food_data)
                     category = serializers.serialize('json', food_data)
-                    print(cate)
                     return HttpResponse(category, content_type="text/json-comment-filtered")
 
 # 메인페이지 무한스크롤
@@ -95,6 +91,8 @@ def ajax_method_main(request):
 
 @login_required
 def category_get(request,id):
+    global count
+    count = 0
     categoies = Category.objects.all()
 
     category_count = 0
