@@ -9,7 +9,6 @@ import random
 from django.views.decorators.csrf import csrf_exempt
 
 
-
 count = 0
 
 @login_required
@@ -154,7 +153,7 @@ def search(request):
 
 @login_required
 def detail_view(request, id):
-    global count 
+    global count
     count = 0
     all = Food.objects.get(id=id)
     food_id = all.id
@@ -198,17 +197,17 @@ def detail_view(request, id):
         
         return render(request, 'food/detail.html', {
             'id': food_id, 
-            'staravg': food_staravg, 
-            'comments': comments, 
-            'address':address, 
-            'store':store, 
-            'img': img, 
-            'tel': tel, 
-            'parking':parking, 
-            'close': close, 
-            'holiday': holiday, 
+            'staravg': food_staravg,
+            'comments': comments,
+            'address':address,
+            'store':store,
+            'img': img,
+            'tel': tel,
+            'parking':parking,
+            'close': close,
+            'holiday': holiday,
             'price': price,
-            'travel': travel,
+            'travel': travel
             })
 
     elif request.method == 'POST':
@@ -267,4 +266,16 @@ def detail_view(request, id):
             all.save()
 
             return redirect('detail_view', id)
-    
+
+
+@login_required
+def delete_comment(request, id):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        comment = request.POST.get('comment')
+        if request.user.username == username:
+            find_comment = Comment.objects.get(username_id=request.user.id, comment=comment)
+            find_comment.delete()
+            return redirect('detail_view', id)
+        else:
+            return redirect('detail_view', id)
