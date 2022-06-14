@@ -137,9 +137,11 @@ body {
     padding: 10px 10px;
     text-align: center;
     color: white;
+    border: none;
+    margin: 0;
 }
 
-.name_star_box>.star {
+.name_star_box > .star {
     display: none;
     background-color: transparent;
     margin-left: 20px;
@@ -147,7 +149,7 @@ body {
     text-shadow: 0 0 0 #ff0000;
 }
 
-.comment_box>.star {
+.comment_box > .star {
     min-width: 113px;
     text-align: right;
     background-color: white;
@@ -156,17 +158,32 @@ body {
     text-shadow: 0 0 0 #ff0000;
 }
 
-.comment_box>.comment {
+.comment_box > .comment {
     flex-grow: 1;
     text-align: center;
     background-color: transparent;
     margin: 15px;
     word-break: break-all;
     font-size: 20px;
+    border: none;
+}
+
+.delete {
+    position: absolute;
+    right: -4%;
+    cursor: pointer;
+    color: transparent;
+    text-shadow: 0 0 0 black;
+    text-decoration-line: none;
+    background-color: transparent;
+    border: none;
+}
+
+.comment_box > .delete:hover {
+    text-shadow: 0 0 0 gray;
 }
 
 .img_container {
-    /* overflow: hidden; */
     display: flex;
     width: 1000px;
     height: 400px;
@@ -299,7 +316,7 @@ body {
     }
 }
 
-@media screen and (max-width:750px) {
+@media (max-width:765px) {
     .img_container {
         width: 500px;
         height: 300px;
@@ -327,6 +344,10 @@ body {
     .comment_box>.star {
         display: none;
     }
+
+    .delete {
+        right: -6%;
+    }
 }
 
 .travel_box {
@@ -346,7 +367,6 @@ body {
 }
 
 .travel {
-    width: 800px;
     height: 250px;
     display: flex;
     justify-content: center;
@@ -382,13 +402,12 @@ body {
     }
 
     .travel {
-        width: 810px;
         height: 170px;
     }
 }
 
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:590px) {
     .img_container {
         width: 350px;
         height: 350px;
@@ -430,8 +449,11 @@ body {
     }
 
     .travel {
-        width: 540px;
         height: 120px;
+    }
+
+    .delete {
+        right: -8%;
     }
 }
 

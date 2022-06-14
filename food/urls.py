@@ -9,5 +9,6 @@ urlpatterns = [
     path('search/',views.search, name='search'),
     path('ajax_method/',views.ajax_method, name='ajax_method'),
     path('ajax_method/<int:cate>',views.ajax_method, name='ajax_method'),
-    path('ajax_method_main',views.ajax_method_main, name='ajax_method_main')
+    path('ajax_method_main',views.ajax_method_main, name='ajax_method_main'),
+    path('detail/<int:id>/delete/', views.delete_comment, name='delete_comment'),
 ]
