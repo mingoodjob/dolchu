@@ -102,12 +102,13 @@
         </script>
         {% endif %}
     </form>
-    <a class="star_avg">⭐ <span>{{ staravg }}</span></a>
+    <span class="star_avg">⭐ {{ staravg }}</span>
     <div class="comment_list">
         {% for comment in comments %}
-        <ul class="comment_box">
+        <form action="{% url 'delete_comment' id %}" method="POST" class="comment_box">
+        {% csrf_token %}
             <div class="name_star_box">
-                <span class="username">{{ comment.username}}</span>
+                <input type="text" class="username" name="username" value="{{comment.username}}">
                 {% if comment.star == 1 %}
                 <span class="star">⭐</span>
                 {% elif comment.star == 2 %}
@@ -120,7 +121,7 @@
                 <span class="star">⭐⭐⭐⭐⭐</span>
                 {% endif %}
             </div>
-            <span class="comment">{{ comment.comment}}</span>
+            <input class="comment" name="comment" value="{{comment.comment}}">
             {% if comment.star == 1 %}
             <span class="star">⭐</span>
             {% elif comment.star == 2 %}
@@ -132,7 +133,10 @@
             {% else %}
             <span class="star">⭐⭐⭐⭐⭐</span>
             {% endif %}
-        </ul>
+            {% if comment.username|slugify == user.get_username %}
+            <input type="submit" value=❌ class="delete">
+            {% endif %}
+        </form>
         {% endfor %}
     </div>
 </div>
